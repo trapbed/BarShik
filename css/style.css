@@ -209,10 +209,17 @@ nav{
     padding: 0 1vmax;
     border-radius: 2vmax;
     margin-right: 2vmax;
-    background-color: #0DB296;
     border: transparent;
     font-family: monserratSB;
+}
+#turquoise{
+    background-color: #0DB296;
     color: white;
+
+}
+#white{
+    background-color: white;
+    color: #AAAAAA;
 }
 #catalogProducts{
     display: flex;

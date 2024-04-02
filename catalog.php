@@ -2,6 +2,8 @@
     include "connect-db.php";
     $categories = mysqli_fetch_all(mysqli_query($con, " SELECT id_category, name_category FROM categories "));
     $products = '' ;
+    $setCat = $_GET['category'];
+    // echo $setCat;
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +31,15 @@
         <?php
             foreach ($categories as $cat){
                 echo "<form action='catalog.php' method='GET'>
-                    <input name='category' class='whereCatalog' type='hidden' value='$cat[0]'>
-                    <input name='catName' class='whereCatalog' type='submit' value='$cat[1]'>
+                    <input name='category' type='hidden' value='$cat[0]'>
+                    <input name='catName'";
+                    if($setCat == $cat[0]){
+                        echo "id='turquoise'";
+                    }
+                    else{
+                        echo "id='white'";
+                    }
+                    echo " class='whereCatalog' type='submit' value='$cat[1]'>
                 </form>";
             }
         ?>
