@@ -30,6 +30,7 @@
 .fizzBackWord{
     font-family: 'monserratB';
     text-transform: uppercase;
+    text-decoration: none;
     font-size: 10vmax;
     line-height: 120%;
     /* box-shadow: 1vmax solid white; */
@@ -188,7 +189,114 @@ nav{
 }
 
 #catalogNav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #F8F8F8;
+}
+
+#catForForm{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90vmax;
+    height: 7vmax;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+.whereCatalog{
+    height: 4vmax;
+    padding: 0 1vmax;
+    border-radius: 2vmax;
+    margin-right: 2vmax;
+    background-color: #0DB296;
+    border: transparent;
+    font-family: monserratSB;
+    color: white;
+}
+#catalogProducts{
+    display: flex;
+    flex-direction: column;
+    width: 90vmax;
+
+}
+
+.productCat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 2vmax 1vmax 0 2vmax; */
+    border-radius: 2vmax;
+    width: 20vmax;
+    background-color: white;
+    height: 25vmax;
+}
+.imagesProducts{
+    margin-top: 2vmax;
+    height: 13vmax;
+}
+.infoProd{
+    width: 20vmax;
+    height: 9vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.volumeName{
+    display: flex;
+    flex-direction: column;
+    width: 18vmax;
+}
+.volumeProd{
+    font-family: monserratM;
+    color: #0DB296;
+    font-size: 1.1vmax;
+    line-height: 150%;
+}
+.nameProd{
+    font-family: monserratSB;
+    font-size: 1.5vmax;
+    color: #0E1514;
+    height: 2.85vmax;
+    line-height: 190%;
+}
+.pricePlus{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 19vmax;
+    height: 4.5vmax;
+    margin-left: 1vmax;
+    background-color: white;
+}
+.priceProd{
+    font-family: monserratM;
+    font-size: 1.2vmax;
+}
+.plusProd{
+    height: 4vmax;
+    width: 4vmax;
+    background-color: #0E1514;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    justify-self: end;
+    border-radius: 1vmax 0;
+    color: #F8F8F8;
+    font-family: monserratL;
+    font-size: 4vmax;
+}
+.fourProducts{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.emtyBetween{
+    width: 3.35vmax;
+    height: 5vmax;
 }
 @font-face {
     font-family: 'monserratB';
@@ -201,4 +309,8 @@ nav{
 @font-face {
     font-family: 'monserratM';
     src: url(../fonts/Montserrat-Medium.ttf);
+}
+@font-face {
+    font-family: 'monserratL';
+    src: url(../fonts/Montserrat-Light.ttf);
 }
