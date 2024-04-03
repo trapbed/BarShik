@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 29 2024 г., 20:49
--- Версия сервера: 5.7.39
+-- Время создания: Апр 03 2024 г., 08:05
+-- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,21 +28,33 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bin` (
-  `id_bin` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `into_bin` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL
+  `id_bin` int NOT NULL,
+  `id_user` int NOT NULL,
+  `into_bin` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cathegories`
+-- Структура таблицы `categories`
 --
 
-CREATE TABLE `cathegories` (
-  `id_category` int(11) NOT NULL,
-  `name_category` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+CREATE TABLE `categories` (
+  `id_category` int NOT NULL,
+  `name_category` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `categories`
+--
+
+INSERT INTO `categories` (`id_category`, `name_category`) VALUES
+(1, 'Газированные напитки'),
+(2, 'Натуральные соки'),
+(3, 'Горячие напитки'),
+(4, 'Черный чай'),
+(5, 'Зеленый чай'),
+(6, 'Прохладительные напитки');
 
 -- --------------------------------------------------------
 
@@ -51,10 +63,10 @@ CREATE TABLE `cathegories` (
 --
 
 CREATE TABLE `orders` (
-  `id_order` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_order` int NOT NULL,
+  `id_user` int NOT NULL,
   `date_order` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status_order` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_order` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `sum_order` decimal(10,0) NOT NULL,
   `bonus_minus` decimal(10,0) DEFAULT NULL,
   `bonus_plus` decimal(10,0) DEFAULT NULL
@@ -67,9 +79,9 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `order_row` (
-  `id_order_row` int(11) NOT NULL,
-  `id_order` int(11) NOT NULL,
-  `id_product` int(11) NOT NULL
+  `id_order_row` int NOT NULL,
+  `id_order` int NOT NULL,
+  `id_product` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -79,13 +91,23 @@ CREATE TABLE `order_row` (
 --
 
 CREATE TABLE `products` (
-  `id_product` int(11) NOT NULL,
-  `name_product` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `desc_product` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_cathegory_prod` int(11) NOT NULL,
+  `id_product` int NOT NULL,
+  `name_product` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desc_product` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_category_prod` int NOT NULL,
   `price_product` decimal(10,0) NOT NULL,
-  `image_product` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
+  `image_product` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `products`
+--
+
+INSERT INTO `products` (`id_product`, `name_product`, `desc_product`, `id_category_prod`, `price_product`, `image_product`) VALUES
+(1, 'Добрая Кола', 'Оригинальный вкус в новой упаковке. Газированный безалкогольный напиток Cola – напиток в металлической банке, освежает и тонизирует с первого глотка. Удивительный чайно-карамельный цвет, приятные пузырьки газа и ни с чем не сравнимый вкус.', 1, '90', 'dobryCola.png'),
+(2, 'Bubble Tea', 'чайный напиток, состоящий из чая (зелёного или чёрного), молока или фруктового сока, иногда кофе, с добавлением шариков из тапиоки', 6, '280', 'boba.png'),
+(3, 'Облепиховый глинтвейн', 'Пряности и специи в составе пунша обладают согревающими и тонизирующими свойствами, а натуральные соки облепихи, малины, апельсина и черной смородины обогащают организм витаминами, минералами и микроэлементами.', 6, '350', 'punchGlintvine.png'),
+(4, 'Комбуча из красного винограда', 'ферментированный черный чай, богатый пробиотиками и витамином B — восстанавливает волокна эластина и коллагена, помогает выводить токсины и укрепляет иммунитет кожи, борется с морщинами, выравнивает тон лица и оказывает общее омолаживающее действие на кожу лица', 4, '100', 'combucha.png');
 
 -- --------------------------------------------------------
 
@@ -94,11 +116,38 @@ CREATE TABLE `products` (
 --
 
 CREATE TABLE `users` (
-  `id_user` int(11) NOT NULL,
-  `email_user` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password_user` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_user` int NOT NULL,
+  `email_user` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_user` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `bonuses_active` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `volume`
+--
+
+CREATE TABLE `volume` (
+  `id_product` int NOT NULL,
+  `volume_product` decimal(3,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `volume`
+--
+
+INSERT INTO `volume` (`id_product`, `volume_product`) VALUES
+(1, '0.33'),
+(1, '0.45'),
+(1, '0.33'),
+(1, '0.45'),
+(2, '0.33'),
+(2, '0.45'),
+(3, '0.33'),
+(3, '0.45'),
+(4, '0.33'),
+(4, '0.45');
 
 --
 -- Индексы сохранённых таблиц
@@ -112,9 +161,9 @@ ALTER TABLE `bin`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Индексы таблицы `cathegories`
+-- Индексы таблицы `categories`
 --
-ALTER TABLE `cathegories`
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`id_category`);
 
 --
@@ -137,7 +186,7 @@ ALTER TABLE `order_row`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id_product`),
-  ADD KEY `id_cathegory_prod` (`id_cathegory_prod`);
+  ADD KEY `id_cathegory_prod` (`id_category_prod`);
 
 --
 -- Индексы таблицы `users`
@@ -147,6 +196,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `id_user` (`email_user`);
 
 --
+-- Индексы таблицы `volume`
+--
+ALTER TABLE `volume`
+  ADD KEY `id_product` (`id_product`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -154,37 +209,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `bin`
 --
 ALTER TABLE `bin`
-  MODIFY `id_bin` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bin` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `cathegories`
+-- AUTO_INCREMENT для таблицы `categories`
 --
-ALTER TABLE `cathegories`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `categories`
+  MODIFY `id_category` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_order` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `order_row`
 --
 ALTER TABLE `order_row`
-  MODIFY `id_order_row` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_order_row` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_product` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -213,7 +268,13 @@ ALTER TABLE `order_row`
 -- Ограничения внешнего ключа таблицы `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_cathegory_prod`) REFERENCES `cathegories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_category_prod`) REFERENCES `categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `volume`
+--
+ALTER TABLE `volume`
+  ADD CONSTRAINT `volume_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `products` (`id_product`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
