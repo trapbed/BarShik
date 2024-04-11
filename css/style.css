@@ -173,10 +173,38 @@ nav{
     border-radius: 0 0 1vmax 1vmax;
 }
 #forNav{
+    align-self: center;
+    justify-self: center;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 53.5vmax;
+    width: 90vmax;
+}
+#searchFormNav{
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 23vmax;
+    height: 3vmax;
+}
+#searchNav{
+    font-family: monserratM;
+    font-size: 0.8vmax;
+    padding: 0 1vmax;
+    width: 16vmax;
+    height: 100%;
+    background-color: #F8F8F8;
+    border-radius: 3vmax;
+    border: transparent;
+}
+#searchNavImg{
+    width: 3vmax;
+    height: 3vmax;
+    background-image: url(../images/search.png);
+    background-size: cover;
+    background-color: transparent;
+    border: transparent;
 }
 #logo{
     align-self: center;
@@ -188,8 +216,24 @@ nav{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 30vmax;
+    width: 15vmax;
     margin-right: 2vmax;
+}
+#navThreeDivsAdmin{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 40vmax;
+    margin-right: 2vmax;
+}
+#userEmailNav{
+    text-decoration: transparent;
+    align-self: flex-end;
+    font-family: monserratM;
+    color: #F8F8F8;
+    font-size: 0.8vmax;
+    line-height: 560%;
 }
 #ruble{
     width: 2vmax;
@@ -197,7 +241,11 @@ nav{
 #basket{
     width: 2vmax;
 }
-#logIn{
+#logIn, #logOut{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: transparent;
     width: 8vmax;
     height: 3vmax;
     background-color: aliceblue;
@@ -364,6 +412,7 @@ nav{
     flex-direction: row;
     justify-content: space-between;
     border: 5vmax solid white;
+    gap: 4vmax;
 }
 #imgOneProd{
     display: flex;
@@ -540,11 +589,17 @@ nav{
     border-radius: 1vmax;
     border: 0.1vmax solid #AAAAAA;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     color: #AAAAAA;
     font-family: monserratM;
     font-size: 0.8vmax;
+}
+#birusaOneProd{
+    background-color: #0DB295;
+    color: #F8F8F8;
+    border: transparent;
 }
 #emtyOneProd3{
     width: 100%;
@@ -592,6 +647,323 @@ nav{
 }
 
 
+/* LOGIN MODAL */
+*{
+    padding: 0;
+    margin :0;
+}
+#backModalLogIn{
+    position: fixed;
+    width: 100vmax;
+    height: 0vmin;
+    background-color: rgba( 14, 21, 20, 0.5);
+}    
+#logInModal, #signInModal{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3vmax;
+    position: absolute;
+    padding: 2vmax;
+    width: 31vmax;
+    height: 22vmax;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+}
+#logInModal>h3, #signInModal>h3{
+    font-family: monserratSB;
+    font-size: 1.2vmax;
+    line-height: 160%;
+}
+#formLogIn, #formSignIn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26vmax;
+    height: 16vmax;
+    /* background-color: green; */
+}
+.label{
+    font-family: monserratM;
+    font-size: 1vmax;
+    /* line-height: 280%; */
+    padding-left: 1vmax;
+}
+.input{
+    display: flex;
+    border-radius: 3vmax;
+    border: 0.1vmax solid #AAAAAA;
+    /* border: 0.1vmax solid #0DB295; */
+    background-color: transparent;
+    font-family: monserratL;
+    font-size: 1.1vmax;
+    /* align-items: center; */
+    width: 24vmax;
+    padding: 0 1vmax;
+    height: 3vmax;
+    outline: none;
+}
+#submitLogIn, #submitSignIn{
+    border: transparent;
+    background-color: #0DB295;
+    color: white;
+    border-radius: 3vmax;
+    font-size: 1vmax;
+    font-family: monserratSB;
+    width: 8vmax;
+    height: 3vmax;
+    align-self: flex-end;
+    /* justify-self: end; */
+}
+#uzhe{
+    font-family: monserratL;
+    font-size: 1vmax;
+    line-height: 1;
+}
+#uzhe>span{
+    color: #0DB295;
+}
+#closeLogIn, #closeSignIn{
+    position: absolute;
+    top: 2vmax;
+    right: 2vmax;
+    width: 2vmax;
+}
+
+#changeToLogIn, #changeToSignIn{
+    cursor: pointer;
+}
+
+
+/* ACCOUNT */
+
+#emtyAboveAcc{
+    width: 100%;
+    height: 6vmax;
+}
+#navAccount{
+    align-self: center;
+    border-radius: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: transparent;
+    justify-content: space-between;
+    width: 60vmax;
+    height: 4vmax;
+}
+#navAccount>a{
+    text-decoration: transparent;
+    font-family: monserratM;
+    color: #A3A1A1;
+}
+#navAccount>a:hover {
+    color: #0E1514;
+}
+#modalAcc{
+    display: flex;
+    flex-direction: column;
+    width: 35vmax;
+    gap: 1vmax;
+}
+.labelAcc{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 6vmax;
+    font-family: monserratSB;
+    /* background-color: darkgoldenrod;
+    border: 0.1vmax solid black; */
+}
+#submitModal{
+    align-self: flex-end;
+    width: 15vmax;
+    height: 3.5vmax;
+    font-size: 1vmax;
+    border: transparent;
+    background-color: #0DB295;
+    color: #F8F8F8;
+    border-radius: 3vmax;
+    font-family: monserratM;
+}
+#changeAccH3{
+    /* align-self: flex-start; */
+    font-family: monserratSB;
+    font-size: 1.4vmax;
+    width: 35vmax;
+}
+
+
+
+/* ORDERS */
+#orders{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 3vmax;
+    width: 60vmax;
+    height: 25vmax;
+    background-color: #F8F8F8;
+}
+#oneOrder{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 3vmax;
+    width: 43vmax;
+    padding: 1vmax ;
+    gap: 1.5vmax;
+    /* height: 20vmax; */
+}
+#oneOrder>h5{
+    font-family: monserratSB;
+    font-size: 1.2vmax;
+    line-height: 1;
+}
+#oneOrder>span{
+    font-family: monserratM;
+    font-size: 1vmax;
+    line-height: 1;
+}
+#oneProd{
+    /* background-color: pink; */
+    box-shadow: 0vmax 0vmax 0.3vmax rgba(170, 170, 170, 0.3);
+    /* border: 0.1vmax solid rgba(170, 170, 170, 0.3); */
+    border-radius: 3vmax;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 41vmax;
+    height: 6vmax;
+    padding: 2vmax 1vmax;
+}
+#infoOneProd{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    width: 38vmax;
+}
+#infoOneProd>span{
+    font-family: monserratM;
+    font-size: 1.1vmax;
+}
+#mathSum{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 25vmax;
+    font-family: monserratL;
+    font-size: 1vmax;
+}
+#sumOneProd{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: monserratSB;
+    font-size: 1.2vmax;
+}
+
+/* ADMIN */
+.adminNav{
+    text-decoration: transparent;
+    color: #F8F8F8;
+    font-family: monserratM;
+    font-size: 1vmax;
+}
+.adminNav:hover{
+    color: #A3A1A1;
+}
+#scrollAdmin{
+    display: flex;
+    align-self: center;
+    width: 60vmax;
+    height: 30vmax;
+    overflow-y: scroll;
+}
+#namePageAdmin{
+    width: 60vmax;
+    line-height: 200%;
+    font-family: monserratSB;
+    font-size: 1.4vmax;
+    color: #0DB295;
+}
+
+/* ADMIN USERS */
+#usersAdminTable{
+    background-color: #AAAAAA;
+    font-family: monserratM;
+    font-size: 0.9vmax;
+}
+#loginAdminUserH, #bonusesAdminUserH, #statusAdminUserH, #blockedAdminUserH, #actionAdminUserH{
+    font-family: monserratSB;
+    font-size: 1vmax;
+    padding: 1vmax;
+}
+.loginAdminUser, #loginAdminUserH{
+    padding: 1vmax;
+    background-color: white;
+    width: 18vmax;
+}
+.bonusesAdminUser, #bonusesAdminUserH{
+    padding: 1vmax;
+    background-color: white;
+    width: 5vmax;
+}
+.statusAdminUser, #statusAdminUserH{
+    padding: 1vmax;
+    background-color: white;
+    width: 10vmax;
+}
+.statusAdminUserA{
+    padding: 1vmax;
+    background-color: white;
+    color: #0DB295;
+}
+.statusAdminUserB{
+    padding: 1vmax;
+    background-color: white;
+    color: #A3A1A1;
+}
+.statusAdminUserUS{
+    padding: 1vmax;
+    background-color: white;
+    color: #AAAAAA;
+}
+.statusAdminUserBS{
+    padding: 1vmax;
+    background-color: white;
+    color: #0DB295;
+}
+.blockedAdminUser, #blockedAdminUserH{
+    padding: 1vmax;
+    background-color: white;
+}
+.actionAdminUser, #actionAdminUserH{
+    padding: 1vmax;
+    background-color: white;
+    width: 5vmax;
+}
+.userBlocked, .userUnblocked{
+    border: transparent;
+    font-family: monserratM;
+    font-size: 0.8vmax;
+    height: 3vmax;
+    width: 8vmax;
+    border-radius: 3vmax;
+}
+.userBlocked{
+    background-color: #white;
+    color: #0DB295;
+}
+.userUnblocked{
+    background-color: #0DB295;
+    color: white;
+}
 @font-face {
     font-family: 'monserratB';
     src: url(../fonts/Montserrat-Black.ttf);
