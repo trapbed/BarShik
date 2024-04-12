@@ -1,23 +1,41 @@
 <?php
+session_start();
+echo $_SESSION['check'];
     include "header.php";
     echo "<div id='emtyAboveAcc'> </div>";
     $page = isset($_GET['page']) ? $_GET['page']  : false ;
 // ЗАГОЛОВКИ
+    // ЗАГОЛОВКИ КАТЕГОРИЙ
     if($page && $page == 'categories'){
-        echo "<h3 id='namePageAdmin'> Категории </h3>";
+        echo "<div class='createNName' >
+                    <h3 id='namePageAdmin'> Категории </h3> 
+                    <a class='createAdmin' href='createCategory.php'> Добавить категорию</a>
+              </div>";
         echo "<div id='startCat'><table></div>
             <tr> 
                 <td class='thCat' id='thCat1'>Идентификатор</td>
                 <td class='thCat' id='thCat2'>Название</td>
+                <td class='thCat' id='thCat3'>Действия</td>
             </tr></table>";
     }
+    // ЗАГОЛОВКИ ПРОДУКТОВ И ОБЪЕМОВ
     else if($page && $page== 'products'){
-        echo "<h3 id='namePageAdmin'> Продукты </h3>";
-        echo "<div id='startProd'><a href='index.php?page=products&prods=products' class='navProdAdmin'>Напитки</a>  <a href='index.php?page=products&prods=volumes' class='navProdAdmin'>Объемы напитков</a></div>";
         $prods = isset($_GET['prods']) ? $_GET['prods'] : false;
+        echo "<div class='createNName' >
+                    <h3 id='namePageAdmin'> Продукты </h3>";
+                    if($prods && $prods == 'volumes'){
+                        echo "<a class='createAdmin' href='createVolume.php'>Добавить объем</a>";
+                    }
+                    else{
+                        echo "<a class='createAdmin' href='createProduct.php'>Добавить продукт</a>";
+                    }
+                echo "</div>";
+        echo "<div id='startProd'><a href='index.php?page=products&prods=products' class='navProdAdmin'>Напитки</a>  <a href='index.php?page=products&prods=volumes' class='navProdAdmin'>Объемы напитков</a></div>";
+        // ЗАГОЛОВКИ ОБЪЕМОВ
         if($prods == 'volumes'){
             // ЗАГОЛОВКИ ОБЪЕМОВ
             echo "<div id='emtyOneProd2'></div>
+
             <table id='productsAdminTitle'>
                 <tr> 
                     <td class='titlePA' id='thV1'>Название</td>
@@ -41,8 +59,11 @@
         }
         
     }
+    // ЗАГОЛОВКИ ЗАКАЗОВ
     else{
-        echo "<h3 id='namePageAdmin'> Заказы </h3>";
+        echo "<div class='createNName' >
+                    <h3 id='namePageAdmin'> Заказы </h3>
+              </div>";
         echo "<div id='emtyOneProd2'></div>
             <table class='ordersAdmin'>
                 <tr> 
@@ -55,7 +76,10 @@
                 </tr>
             </table>";
     }
+// ДОБАВЛЕНИЕ
+// <form action='' method='GET'></form>
 // ТАБЛИЦЫ СО СКРОЛЛОМ
+// КАТЕГОРИИ
     echo "<div id='scrollAdmin'>";
     if($page && $page == 'categories'){
         $categories = mysqli_fetch_all(mysqli_query($con, "SELECT `id_category`, `name_category` FROM `categories`"));
@@ -67,7 +91,18 @@
                     $checkCat = 1;
                 }
                     echo "<td class='idCategory'>".$cat[0]."</td>
-                          <td class='nameCategory'>".$cat[1]."</td>";
+                          <td class='nameCategory'>".$cat[1]."</td>
+                          <td class='actionCategory'>
+                            <form action='updateCat-db.php' method='POST'>
+                                <input type='hidden' name='idCat' value='".$cat[0]."'>
+                                <input class='updateCat' type='submit' value=''>
+                            </form>
+
+                            <form action='deleteCat-db.php' method='POST'>
+                                <input type='hidden' name='idCat' value='".$cat[0]."'>
+                                <input class='deleteCat' type='submit' value=''>
+                            </form>
+                          </td>";
                 if($checkCat == 1){
                     echo "</tr>";
                     $checkCat = 0;
@@ -188,24 +223,3 @@
 
     echo "</div>";
 ?>
-
-
-<!-- <a href=''><img src='' alt='' title=''></a> -->
-
-
-<!-- SELECT id_order, users.email_user, date_order, status_order FROM `orders` JOIN users ON users.id_user=orders.id_user  WHERE id_user = -->
-
-
-
-<!-- ФОРМА ДЛЯ ВЫВОДА СТАТУСОВ ЗАКАЗА -->
-
-<!-- <form action='' method='GET' ><
-                <select>";
-                // if(){
-
-                // }
-                // else{
-
-                // }
-                echo "</select>
-                </form>  -->

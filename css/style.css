@@ -999,7 +999,12 @@ nav{
     width: 60vmax;
     height: 1vmax;
 }
-
+.actionCategory{
+    height: 3vmax;
+    padding: 0 1vmax;
+    width: 25vmax;
+    background-color: #F8F8F8;
+}
 
 /* ADMIN PRODUCTS */
 #startProd{
@@ -1136,6 +1141,63 @@ nav{
     width: auto;
     height: 1vmax;
     background-color: olive;
+}
+
+/* ДЛЯ СОЗДАНИЯ И ЗАГОЛОВКА */
+.createNName{
+    display: flex;
+    flex-direction: row;
+    width: 60vmax;
+}
+.createAdmin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17vmax;
+    height: 3vmax;
+    background-color: #0DB295;
+    color: #F8F8F8;
+    text-decoration: none;
+    font-family: monserratSB;
+    border-radius: 3vmax;
+}
+
+/* CREATE PAGE */
+.titleCreate{
+    width: 80vmax;
+    font-family: monserratSB;
+    font-size: 1.4vmax;
+    line-height: 200%;
+    color: #0DB295;
+}
+/* CREATE CATEGORY */
+#createCatPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10vmax;
+    background-color: palegoldenrod;
+}
+#createCategory{
+    font-size: 0.8vmax;
+    padding: 0 1vmax;
+    width: 28vmax;
+    height: 3vmax;
+    border-radius: 3vmax;
+    border: 0.1vmax solid #0DB295;
+    font-family: monserratL;
+    outline: none;
+    background-color: transparent;
+}
+.submitCreate{
+    font-family: monserratSB;
+    font-size: 1vmax;
+    width: 10vmax;
+    height: 3vmax;
+    border-radius: 3vmax;
+    background-color: #0DB295;
+    color: #F8F8F8;
+    border: transparent;
 }
 @font-face {
     font-family: 'monserratB';
