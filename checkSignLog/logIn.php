@@ -16,7 +16,7 @@
     $user_pass = $user." WHERE password_user='".$pass."'";
     $check_pass = mysqli_num_rows(mysqli_query($con, $user_pass));
 
-    $location = '';
+    $location = '../catalog.php';
 
     if($check_login == 0){
         $error = ' Неправильно введен Логин. Проверьте и попробуйте снова.';

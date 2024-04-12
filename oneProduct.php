@@ -1,12 +1,12 @@
 <?php
 if(isset($_GET['id']) && $_GET['id'] != ' '){
-    $products = "SELECT DISTINCT name_product, desc_product, name_category, price_product, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=products.id_category_prod WHERE products.id_product =".$_GET['id'];
+    $products = "SELECT DISTINCT name_product, desc_product, name_category, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=products.id_category_prod WHERE products.id_product =".$_GET['id'];
     $queryProd = mysqli_fetch_array(mysqli_query($con, $products));
 
     echo "<div id='backModal'></div>
             <div id='modalReg'>
                 <img src='../images/close.png' alt='close' id='closeOneProd'>
-                <div id='imgOneProd'><img src='../images/products/".$queryProd[4]."' alt=''></div>
+                <div id='imgOneProd'><img src='../images/products/".$queryProd[3]."' alt=''></div>
                 <div id='infoOneProd'>
                     <h3 id='nameProd'>$queryProd[0]</h3>
                     <div id='rating'>
@@ -84,8 +84,13 @@ if(isset($_GET['id']) && $_GET['id'] != ' '){
                             }
                             $price_vol =  mysqli_fetch_all(mysqli_query($con, $price_vol));
 
-                                echo "<span id='justPrice'>".$price_vol[0][0]." &#8381;</span>
-                            </div>
+                            if(isset($_GET['volume'])){
+                                echo "<span id='justPrice'>".$price_vol[0][0]." &#8381;</span>";
+                            }
+                            else{
+                                echo "<span id='justPrice'> от ".$price_vol[0][0]." &#8381;</span>";
+                            }
+                            echo "</div>
                             <form action='' method='GET'>
                                 <input type='hidden' name=''>
                                 <input type='submit' value='В корзину' id='toCart'>

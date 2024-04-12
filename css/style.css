@@ -882,7 +882,8 @@ nav{
     display: flex;
     align-self: center;
     width: 60vmax;
-    height: 30vmax;
+    height: auto;
+    max-height: 20vmax;
     overflow-y: scroll;
 }
 #namePageAdmin{
@@ -957,12 +958,184 @@ nav{
     border-radius: 3vmax;
 }
 .userBlocked{
-    background-color: #white;
+    background-color: white;
     color: #0DB295;
 }
 .userUnblocked{
     background-color: #0DB295;
     color: white;
+}
+
+
+/* ADMIN CATEGORIES */
+.tableAdminCat{
+    background-color: #BDBDBD;
+}
+.thCat{
+    color: #0DB295;
+    font-family: monserratSB;
+}
+.idCategory{
+    color: #0E1514;
+    font-family: monserratSB;
+}
+.nameCategory{
+    color: #0E1514;
+    font-family: monserratM;
+}
+.idCategory, #thCat1{
+    height: 3vmax;
+    padding: 0 1vmax;
+    width: 10vmax;
+    background-color: #F8F8F8;
+}
+.nameCategory, #thCat2{
+    height: 3vmax;
+    padding: 0 1vmax;
+    width: 25vmax;
+    background-color: #F8F8F8;
+}
+#startCat{
+    width: 60vmax;
+    height: 1vmax;
+}
+
+
+/* ADMIN PRODUCTS */
+#startProd{
+    width: 60vmax;
+    height: 1vmax;
+    display: flex;
+    flex-direction: row;
+    gap: 3vmax;
+}
+.navProdAdmin{
+    color: #0DB295;
+    font-family: monserratSB;
+    text-decoration: none;
+}
+#productsAdminTitle{
+    width: 60vmax;
+    background-color: #BDBDBD;
+}
+.titlePA{
+    font-family: monserratSB;
+    font-size: 1vmax;
+    line-height: 280%;
+}
+
+
+#thP1, .prodImg{
+    background-color: #F8F8F8;
+    width: 9vmax;
+    padding: 0.5vmax 1vmax;
+    font-family: monserratM;
+    font-size: 0.8vmax;
+}
+#thP2, .prodName{
+    background-color: #F8F8F8;
+    width: 11vmax;
+    padding: 0.5vmax 1vmax;
+    font-family: monserratM;
+    font-size: 0.8vmax;
+}
+#thP3, .prodDesc{
+    background-color: #F8F8F8;
+    width: 13vmax;
+    padding: 0.5vmax 1vmax;
+    font-family: monserratM;
+    font-size: 0.8vmax;
+}
+#thP4, .prodCat{
+    background-color: #F8F8F8;
+    width: 8.5vmax;
+    padding: 0.2vmax 1vmax;
+    font-family: monserratM;
+    font-size: 0.8vmax;
+}
+#thP5, .prodAction{
+    background-color: #F8F8F8;
+    padding: 0.5vmax 1vmax;
+    font-family: monserratM;
+    font-size: 0.8vmax;
+}
+#prodBGC{
+    background-color: #A3A1A1;
+}
+.imgAdminProd{
+    width: 2vmax;
+}
+/* VOLUMES */
+#thV1, .adminVN{
+    padding: 0.5vmax 1vmax;
+    width: 14vmax;
+    background-color: white;
+}
+#thV2, .adminVV{
+    padding: 0.5vmax 1vmax;
+    width: 10vmax;
+    background-color: white
+}
+#thV3, .adminVP{
+    padding: 0.5vmax 1vmax;
+    width: 10vmax;
+    background-color: white
+}
+#thV4, .adminVA{
+    padding: 0.5vmax 1vmax;
+    width: auto;
+    background-color: white;
+}
+.emtyRow{
+    background-color: white;
+    width: 100%;
+    height: 2vmax;    
+}
+
+
+
+/* ORDERS */
+.ordersAdmin{
+    font-family: monserratM;
+    font-size: 0.8vmax;
+    width: 60vmax;
+    background-color: #BDBDBD;
+}
+.titleOAN{
+    padding: 0.5vmax;
+    width: 4vmax;
+    height: 1vmax;
+    background-color: yellow;
+}
+.titleOAU{
+    padding: 0.5vmax;
+    width: 12vmax;
+    height: 1vmax;
+    background-color: sandybrown;
+}
+.titleOAD{
+    padding: 0.5vmax;
+    width: 12vmax;
+    height: 1vmax;
+    background-color: khaki;
+}
+.titleOASu{
+    padding: 0.5vmax;
+    width: 6vmax;
+    height: 1max;
+    background-color: lemonchiffon;
+}
+.titleOASt{
+    padding: 0.5vmax;
+    width: 6vmax;
+    height: 1vmax;
+    background-color: oldlace;
+}
+.titleOAM{
+    padding: 0.5vmax;
+    width: auto;
+    height: 1vmax;
+    background-color: olive;
 }
 @font-face {
     font-family: 'monserratB';

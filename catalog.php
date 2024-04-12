@@ -1,7 +1,7 @@
 <?php
     include "header.php";
     // ancor linlk
-    // $_SESSION['numProd'] = isset($_GET['numProd']) ? $_GET['numProd'] : isset($_SESSION['numProd']) ? $_SESSION['numProd'] : false ;
+    $_SESSION['numProd'] = isset($_GET['numProd']) ? $_GET['numProd'] : (isset($_SESSION['numProd']) ? $_SESSION['numProd'] : false) ;
     $numProdSess = "product".$_SESSION['numProd'];
     
     $onlyCat =  mysqli_fetch_all(mysqli_query($con, "SELECT * FROM categories"));
@@ -38,7 +38,7 @@
             <?php
 
                 $category = isset($_GET['category']) ? $_GET['category'] : false;
-                $products = "SELECT DISTINCT name_product, desc_product, name_category, price_product, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=products.id_category_prod";
+                $products = "SELECT DISTINCT name_product, desc_product, name_category, products.id_product, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=products.id_category_prod";
                 // $products = "SELECT name_product, desc_product, name_category, price_product, image_product, id_product FROM products JOIN categories ON categories.id_category=products.id_category_prod";
                 if($category != false && $category){
                     $products.= " WHERE categories_of_products.id_category = ".$_GET['category'];
@@ -49,6 +49,10 @@
                 $numProd = 1;
 
                 foreach($queryProd as $prod){
+                        
+                        $price_vol = "SELECT price_volume FROM volumes WHERE id_product=".$prod[3];
+                        $price_vol =  mysqli_fetch_all(mysqli_query($con, $price_vol));
+
                     if($checkNumProd==0){
                         echo "<div class='fourProducts'>";
                     }
@@ -60,8 +64,8 @@
                                 <span class='nameProd'>$prod[0]</span>
                             </div>
                             <div class='pricePlus'>
-                                <span class='priceProd'>&#8381; $prod[3]</span>
-                                <a class='plusProd' id='product".$numProd."' href='catalog.php?category=".$setCat."&id=".$prod[5]."&numProd=".$numProd."'>+</a>
+                                <span class='priceProd'> от ".$price_vol[0][0]." &#8381;</span>
+                                <a class='plusProd' id='product".$numProd."' href='catalog.php?category=".$setCat."&id=".$prod[3]."&numProd=".$numProd."'>+</a>
                             </div>
                         </div>
                     </div>";
