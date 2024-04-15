@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo $_SESSION['check'];
+echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
     include "header.php";
     echo "<div id='emtyAboveAcc'> </div>";
     $page = isset($_GET['page']) ? $_GET['page']  : false ;
@@ -23,10 +23,7 @@ echo $_SESSION['check'];
         $prods = isset($_GET['prods']) ? $_GET['prods'] : false;
         echo "<div class='createNName' >
                     <h3 id='namePageAdmin'> Продукты </h3>";
-                    if($prods && $prods == 'volumes'){
-                        echo "<a class='createAdmin' href='createVolume.php'>Добавить объем</a>";
-                    }
-                    else{
+                    if($prods && $prods == 'products'){
                         echo "<a class='createAdmin' href='createProduct.php'>Добавить продукт</a>";
                     }
                 echo "</div>";
@@ -53,6 +50,7 @@ echo $_SESSION['check'];
                 <td class='titlePA' id='thP1'>Изображение</td>
                 <td class='titlePA' id='thP2'>Название</td>
                 <td class='titlePA' id='thP3'>Описание</td>
+                <td class='titlePA' id='thP6'>Объем/Цена</td>
                 <td class='titlePA' id='thP4'>Категории</td>
                 <td class='titlePA' id='thP5'>Действия</td>
             </tr></table>";
@@ -76,11 +74,16 @@ echo $_SESSION['check'];
                 </tr>
             </table>";
     }
+
+
+
+
 // ДОБАВЛЕНИЕ
-// <form action='' method='GET'></form>
 // ТАБЛИЦЫ СО СКРОЛЛОМ
-// КАТЕГОРИИ
+
     echo "<div id='scrollAdmin'>";
+// КАТЕГОРИИ
+
     if($page && $page == 'categories'){
         $categories = mysqli_fetch_all(mysqli_query($con, "SELECT `id_category`, `name_category` FROM `categories`"));
         $checkCat = 0;
@@ -95,12 +98,12 @@ echo $_SESSION['check'];
                           <td class='actionCategory'>
                             <form action='updateCat-db.php' method='POST'>
                                 <input type='hidden' name='idCat' value='".$cat[0]."'>
-                                <input class='updateCat' type='submit' value=''>
+                                <input class='updateCatAct' type='submit' value=''>
                             </form>
 
-                            <form action='deleteCat-db.php' method='POST'>
-                                <input type='hidden' name='idCat' value='".$cat[0]."'>
-                                <input class='deleteCat' type='submit' value=''>
+                            <form id='actionCatForm' action='deleteCat-db.php' method='POST'>
+                                <input class='deleteCatAct' type='hidden' name='idCat' value='".$cat[0]."'>
+                                <input class='deleteCatAct' type='submit' value=''>
                             </form>
                           </td>";
                 if($checkCat == 1){
@@ -116,20 +119,19 @@ echo $_SESSION['check'];
         // ВЫВОД ОБЪЕМОВ
         if($prods == 'volumes'){
             $count_row_vol = 0;
-            $volumes = "SELECT products.name_product, volume_of_prod, price_volume FROM volumes JOIN products ON products.id_product=volumes.id_product";
+            $volumes = "SELECT products.name_product, volume_of_prod, price_volume, products.id_product, id_volume_prod FROM volumes JOIN products ON products.id_product=volumes.id_product";
             $num_row_vol = mysqli_num_rows(mysqli_query($con, $volumes));
             $volumes = mysqli_fetch_all(mysqli_query($con, $volumes));
+            $countRowVol = 1;
 
             $lastProd = false;
             foreach($volumes as $volume){
-                if($lastProd != false && $lastProd != $volume[0]){
-                    echo "<tr class='emtyRow'>
-                    <td>&nbsp; </td>
-                    <td>&nbsp; </td>
-                    <td>&nbsp; </td>
-                    <td>&nbsp; </td>
-                    </tr>";
-                }
+                $numRowVol = mysqli_fetch_array(mysqli_query($con, "SELECT COUNT(*) FROM `volumes` WHERE id_product=".$volume[3]));
+                
+                // echo $numRowVol[0];
+                // $lastProd != false && $lastProd != $volume[0]
+                
+                
                 $lastProd = $volume[0];
                 if($count_row_vol == 0){
                     echo "<table id='productsAdminTitle'>";
@@ -138,12 +140,39 @@ echo $_SESSION['check'];
                     <td class='adminVN'>".$volume[0]."</td>
                     <td class='adminVV'>".$volume[1]."</td>
                     <td class='adminVP'>".$volume[2]."</td>
-                    <td class='adminVA'> <form action='' method=''>        </form> </td>
+                    <td class='adminVA'>
+                        <form action='updateVolume-db.php' method='POST'>
+                                <input type='hidden' name='idRowVol' value='".$volume[4]."'>
+                                <input class='updateCatAct' type='submit' value=''>
+                        </form>
+
+
+                        <form id='actionCatForm' action='preDeleteVolume-db.php' method='POST'>
+                                <input class='deleteCatAct' type='hidden' name='idRowVol' value='".$volume[4]."'>
+                                <input class='deleteCatAct' type='submit' value=''>
+                        </form>
+                    </td>
                 </tr>";
+                if($countRowVol == $numRowVol[0]){
+                    echo "<tr class='emtyRow'>
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+                    <td> 
+                        <form class='' action='createVolume.php' method='POST'>
+                            <input name='idProd' type='hidden' value='".$volume[3]."'>
+                            <input class='createVol' type='submit' value='Создать для ".$volume[0]."'>
+                        </form>
+                    </td>
+                    </tr>";
+                    $countRowVol=0;
+                }
                 if($count_row_vol == $num_row_vol){
                     echo "</table>";
                 }
                 $count_row_vol++;
+                $countRowVol++;
+
             }
         }
         // ВЫВОД ПРОДУКТОВ
@@ -160,9 +189,23 @@ echo $_SESSION['check'];
                 echo "<tr>
                 <td class='prodImg'><img src='../images/products/".$prod[1]."' alt='' class='imgAdminProd'></td>
                 <td class='prodName'>".$prod[2]."</td>
-                <td class='prodDesc'>".$prod[3]."</td>";
-
-                $catProd = "SELECT name_product, name_category FROM categories_of_products JOIN products ON products.id_product=categories_of_products.id_product JOIN categories ON categories.id_category=categories_of_products.id_category WHERE categories_of_products.id_product =".$prod[0];
+                <td class='prodDesc'>".$prod[3]."</td>
+                <td class='prodVol'>";
+                $volumesProd = mysqli_query($con, "SELECT `id_volume_prod`, `id_product`, `volume_of_prod`, `price_volume` FROM `volumes` WHERE id_product=".$prod[0]);
+                $numVP = mysqli_num_rows($volumesProd);
+                $volumesProd = mysqli_fetch_all($volumesProd);
+                $countVP = 1;
+                foreach($volumesProd as $vp){
+                    echo "<span>$vp[2]</span>  /  <span>$vp[3] &#8381;</span> <br>";
+                    if($countVP == $numVP){
+                        echo "<br><br><a class='updateVolInProd' href='index.php?page=products&prods=volumes'>Изменить объем</a>";
+                        $countVP = 0;
+                    }
+                    $countVP++;
+                }
+                echo"</td>";
+                
+                $catProd = "SELECT DISTINCT name_product, name_category FROM categories_of_products JOIN products ON products.id_product=categories_of_products.id_product JOIN categories ON categories.id_category=categories_of_products.id_category WHERE categories_of_products.id_product =".$prod[0];
                 $catProd = mysqli_fetch_all(mysqli_query($con, $catProd));
                 $countCatProd = 1;
                 echo "<td class='prodCat'>";
@@ -171,7 +214,20 @@ echo $_SESSION['check'];
                     $countCatProd++;
                 }
                 echo "</td>
-                <td class='prodAction'> <form action='' method=''>        </form> </td>
+                <td class='prodAction'>
+                
+                    <form action='updateProd-db.php' method='POST'>
+                        <input type='hidden' name='idCat' value='".$prod[0]."'>
+                        <input class='updateCatAct' type='submit' value=''>
+                    </form>
+
+
+                    <form id='actionCatForm' action='deleteProd-db.php' method='POST'>
+                        <input class='deleteCatAct' type='hidden' name='idCat' value='".$prod[0]."'>
+                        <input class='deleteCatAct' type='submit' value=''>
+                    </form>
+                
+                </td>
                 </tr>";
                 if($countProd == $numProd){
                     echo "</table>";
