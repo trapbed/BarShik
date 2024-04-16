@@ -38,7 +38,7 @@
                         echo "
                         <a class='adminNav' href='index.php?page=orders'>Заказы</a>
                         <a class='adminNav' href='index.php?page=categories'>Категории</a>
-                        <a class='adminNav' href='index.php?page=products'>Продукты</a>
+                        <a class='adminNav' href='index.php?page=products&prods=products'>Продукты</a>
                         <a href='/account.php' id='userEmailNav'>".$userInfo['email_user']."</a>
                         <a href='../exitFromAcc.php' id='logOut' >Выйти</a>";
                     }

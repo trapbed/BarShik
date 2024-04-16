@@ -1,6 +1,6 @@
 <?php
 if(isset($_GET['id']) && $_GET['id'] != ' '){
-    $products = "SELECT DISTINCT name_product, desc_product, name_category, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=products.id_category_prod WHERE products.id_product =".$_GET['id'];
+    $products = "SELECT DISTINCT name_product, desc_product, name_category, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=categories_of_products.id_category WHERE products.id_product =".$_GET['id'];
     $queryProd = mysqli_fetch_array(mysqli_query($con, $products));
 
     echo "<div id='backModal'></div>

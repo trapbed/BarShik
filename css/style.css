@@ -1357,7 +1357,7 @@ nav{
 
 /* CREATE PAGE */
 .titleCreate{
-    /* width: 80vmax; */
+    width: 90vmax;
     font-family: monserratSB;
     font-size: 1.4vmax;
     line-height: 280%;
@@ -1393,6 +1393,79 @@ nav{
     border: transparent;
 }
 
+
+/* CREATE PRODUCT */
+#formCreateProd{
+    width: 90vmax;
+}
+.labelCP{
+    font-family: monserratM;
+    font-size: 1vmax;
+    line-height: 280%;
+    padding-left: 1vmax;
+}
+.inputCP{
+    display: flex;
+    border-radius: 3vmax;
+    border: 0.1vmax solid #AAAAAA;
+    background-color: transparent;
+    font-family: monserratL;
+    font-size: 1.1vmax;
+    align-items: center;
+    width: 34vmax;
+    padding: 1vmax;
+    height: 1vmax;
+    outline: none;
+}
+#selectCatProd{
+    height: 4vmax;
+}
+#submitCreateProd{
+    width: 15vmax;
+    height: 3vmax;
+    background-color: #0DB295;
+    color: #F8F8F8;
+    font-family: monserratSB;
+    font-size: 1vmax;
+    border-radius: 3vmax;
+    border: transparent;
+}
+
+
+/* ADD CAT */
+#alreadyHasCat{
+    display: flex;
+    flex-direction: column;
+    gap: 1vmax;
+    width: 90vmax;
+    height: auto;
+    border-left: 0.2vmax solid #0DB295;
+    padding-left: 1vmax;
+}
+#alreadyHasCat>h3{
+    font-family: monserratM;
+    color: #0DB295;
+    font-size: 1vmax;
+}
+.alCat{
+    font-family: monserratM;
+    font-size: 0.8vmax;
+}
+#allBlocksAddCat{
+    display: flex;
+    flex-direction: column;
+}
+.catsProds{
+    color: #0E1514;
+    font-family: monserratM;
+    font-size: 0.8vmax;
+}
+.addCatProd{
+    text-decoration: transparent;
+    color: #0DB295;
+    font-family: monserratM;
+    font-size: 0.8vmax;
+}
 @font-face {
     font-family: 'monserratB';
     src: url(../fonts/Montserrat-Black.ttf);

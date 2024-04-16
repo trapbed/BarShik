@@ -13,6 +13,7 @@
 
 
     include "oneProduct.php";
+    echo mysqli_insert_id($con);
 ?>
 
 
@@ -38,7 +39,7 @@
             <?php
 
                 $category = isset($_GET['category']) ? $_GET['category'] : false;
-                $products = "SELECT DISTINCT name_product, desc_product, name_category, products.id_product, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=products.id_category_prod";
+                $products = "SELECT DISTINCT name_product, desc_product, products.id_product, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=categories_of_products.id_category ";
                 // $products = "SELECT name_product, desc_product, name_category, price_product, image_product, id_product FROM products JOIN categories ON categories.id_category=products.id_category_prod";
                 if($category != false && $category){
                     $products.= " WHERE categories_of_products.id_category = ".$_GET['category'];
@@ -50,14 +51,14 @@
 
                 foreach($queryProd as $prod){
                         
-                        $price_vol = "SELECT price_volume FROM volumes WHERE id_product=".$prod[3];
+                        $price_vol = "SELECT price_volume FROM volumes WHERE id_product=".$prod[2];
                         $price_vol =  mysqli_fetch_all(mysqli_query($con, $price_vol));
 
                     if($checkNumProd==0){
                         echo "<div class='fourProducts'>";
                     }
                     echo "<div class='productCat'>
-                        <img src='/images/products/$prod[4]' alt='$prod[0]' class='imagesProducts'>
+                        <img src='/images/products/$prod[3]' alt='$prod[0]' class='imagesProducts'>
                         <div class='infoProd'>
                             <div class='volumeName'>
                                 <span class='volumeProd'>Новинка</span>
@@ -65,7 +66,7 @@
                             </div>
                             <div class='pricePlus'>
                                 <span class='priceProd'> от ".$price_vol[0][0]." &#8381;</span>
-                                <a class='plusProd' id='product".$numProd."' href='catalog.php?category=".$setCat."&id=".$prod[3]."&numProd=".$numProd."'>+</a>
+                                <a class='plusProd' id='product".$numProd."' href='catalog.php?category=".$setCat."&id=".$prod[2]."&numProd=".$numProd."'>+</a>
                             </div>
                         </div>
                     </div>";

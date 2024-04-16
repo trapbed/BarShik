@@ -177,7 +177,7 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
         }
         // ВЫВОД ПРОДУКТОВ
         else{
-            $products = "SELECT id_product, image_product, name_product, desc_product, id_category_prod FROM products";
+            $products = "SELECT id_product, image_product, name_product, desc_product FROM products";
             // echo "Напитки";
             $numProd = mysqli_num_rows(mysqli_query($con, $products));
             $products = mysqli_fetch_all(mysqli_query($con, $products));
@@ -195,26 +195,47 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
                 $numVP = mysqli_num_rows($volumesProd);
                 $volumesProd = mysqli_fetch_all($volumesProd);
                 $countVP = 1;
-                foreach($volumesProd as $vp){
-                    echo "<span>$vp[2]</span>  /  <span>$vp[3] &#8381;</span> <br>";
-                    if($countVP == $numVP){
-                        echo "<br><br><a class='updateVolInProd' href='index.php?page=products&prods=volumes'>Изменить объем</a>";
-                        $countVP = 0;
+                if($numVP != 0){
+                    foreach($volumesProd as $vp){
+                        echo "<span>$vp[2]</span>  /  <span>$vp[3] &#8381;</span> <br>";
+                        if($countVP == $numVP){
+                            echo "<br><br><a class='updateVolInProd' href='index.php?page=products&prods=volumes'>Изменить объем</a>";
+                            $countVP = 0;
+                        }
+                        $countVP++;
                     }
-                    $countVP++;
                 }
+                else{
+                    echo "<a class='updateVolInProd' href='index.php?page=products&prods=volumes'>Изменить объем</a>";
+                }
+                
                 echo"</td>";
                 
-                $catProd = "SELECT DISTINCT name_product, name_category FROM categories_of_products JOIN products ON products.id_product=categories_of_products.id_product JOIN categories ON categories.id_category=categories_of_products.id_category WHERE categories_of_products.id_product =".$prod[0];
+                $catProd = "SELECT DISTINCT name_product, name_category, categories_of_products.id_product, categories_of_products.id_category FROM categories_of_products JOIN products ON products.id_product=categories_of_products.id_product JOIN categories ON categories.id_category=categories_of_products.id_category WHERE categories_of_products.id_product =".$prod[0];
+                $numCatProd = mysqli_num_rows(mysqli_query($con, $catProd));
                 $catProd = mysqli_fetch_all(mysqli_query($con, $catProd));
                 $countCatProd = 1;
                 echo "<td class='prodCat'>";
-                foreach ($catProd as $cat_pro){
-                    echo $countCatProd." ".$cat_pro[1]."<br><br>";
-                    $countCatProd++;
+                if($numCatProd != 0){
+                    foreach ($catProd as $cat_pro){
+                        echo "<a class='catsProds' href='preDeleteCatProd.php?prod=".$cat_pro[2]."&cat=".$cat_pro[3]."'>".$countCatProd." ".$cat_pro[1]."</a>";
+                        echo "<br><br>";
+                        $countCatProd++;
+                        if($numCatProd < $countCatProd){
+                        echo "<a class='addCatProd' href='addCatForProd.php?idProd=".$cat_pro[2]."'>Добавить категорию</a>";
+                    }
+                    }
+                    
                 }
-                echo "</td>
-                <td class='prodAction'>
+                else{
+                    echo "<a class='addCatProd' href='addCatForProd.php?idProd=".$cat_pro[2]."'>Добавить категорию</a>";
+                }
+                echo "</td>";
+
+
+
+
+                echo "<td class='prodAction'>
                 
                     <form action='updateProd-db.php' method='POST'>
                         <input type='hidden' name='idCat' value='".$prod[0]."'>
