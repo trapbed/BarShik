@@ -141,7 +141,7 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
                     <td class='adminVV'>".$volume[1]."</td>
                     <td class='adminVP'>".$volume[2]."</td>
                     <td class='adminVA'>
-                        <form action='updateVolume-db.php' method='POST'>
+                        <form action='updateVolume.php' method='POST'>
                                 <input type='hidden' name='idRowVol' value='".$volume[4]."'>
                                 <input class='updateCatAct' type='submit' value=''>
                         </form>

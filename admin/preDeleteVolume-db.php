@@ -23,6 +23,7 @@
         location.href = "deleteVolume-db.php";
     }
     else{
+        alert("Объем <?=$infoRowVol[2]?> все еще существует для продукта : '<?=$infoRowVol[1]?>'");
         location.href = "index.php?page=products&prods=volumes";
     }
 </script>

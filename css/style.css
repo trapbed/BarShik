@@ -881,16 +881,16 @@ nav{
 #scrollAdmin{
     display: flex;
     align-self: center;
-    width: 60vmax;
+    width: 90vmax;
     height: auto;
     max-height: 20vmax;
     overflow-y: scroll;
 }
 #namePageAdmin{
-    width: 60vmax;
+    width: 90vmax;
     line-height: 200%;
     font-family: monserratSB;
-    font-size: 1.4vmax;
+    font-size: 1.8vmax;
     color: #0DB295;
 }
 
@@ -996,19 +996,81 @@ nav{
     background-color: #F8F8F8;
 }
 #startCat{
-    width: 60vmax;
+    width: 90vmax;
     height: 1vmax;
 }
 .actionCategory{
     height: 3vmax;
     padding: 0 1vmax;
-    width: 25vmax;
     background-color: #F8F8F8;
 }
-
+.actionCategory{
+    display: flex;
+    flex-direction: row;
+    gap: 2vmax;
+}
+.updateCatAct{
+    width: 2.5vmax;
+    height: 2.5vmax;
+    background-size: cover;
+    border: transparent;
+    background-color: transparent;
+    background-image: url(../images/update.png);
+}
+.deleteCatAct{
+    width: 2.5vmax;
+    height: 2.5vmax;
+    background-size: cover;
+    border: transparent;
+    background-color: transparent;
+    background-image: url(../images/delete.png);
+}
+/* CHECK CAT */
+#headerCheckCat{
+    width: 45vmax;
+    font-family: monserratSB;
+    color: #0DB295;
+    font-size: 1.4vmax;
+    line-height: 200%;
+}
+#updateCatCheck{
+    width: 45vmax;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vmax;
+}
+#nameCatL{
+    display: flex;
+    flex-direction: column;
+    font-family: monserratM;
+    font-size: 1vmax;
+    line-height: 260%;
+    color: #0E1514;
+}
+#checkNameCat{
+    padding-left: 1vmax;
+    width: 35vmax;
+    height: 3vmax;
+    font-family: monserratM;
+    color: #A3A1A1;
+    font-size: 1vmax;
+    border: 0.1vmax solid #A3A1A1;
+    border-radius: 3vmax;
+}
+#submitCheckCat{
+    width: 15vmax;
+    height: 3vmax;
+    background-color: #0DB295;
+    color: #F8F8F8;
+    font-family: monserratM;
+    font-size: 1vmax;
+    border: transparent;
+    border-radius: 3vmax;
+}
 /* ADMIN PRODUCTS */
 #startProd{
-    width: 60vmax;
+    width: 90vmax;
     height: 1vmax;
     display: flex;
     flex-direction: row;
@@ -1020,7 +1082,7 @@ nav{
     text-decoration: none;
 }
 #productsAdminTitle{
-    width: 60vmax;
+    width: 90vmax;
     background-color: #BDBDBD;
 }
 .titlePA{
@@ -1046,14 +1108,14 @@ nav{
 }
 #thP3, .prodDesc{
     background-color: #F8F8F8;
-    width: 13vmax;
+    width: 18vmax;
     padding: 0.5vmax 1vmax;
     font-family: monserratM;
     font-size: 0.8vmax;
 }
 #thP4, .prodCat{
     background-color: #F8F8F8;
-    width: 8.5vmax;
+    width: 15vmax;
     padding: 0.2vmax 1vmax;
     font-family: monserratM;
     font-size: 0.8vmax;
@@ -1064,41 +1126,172 @@ nav{
     font-family: monserratM;
     font-size: 0.8vmax;
 }
+#thP6, .prodVol{
+    width: 10vmax;
+    background-color: #F8F8F8;
+    padding: 0.5vmax 1vmax;
+    font-family: monserratM;
+    font-size: 0.8vmax;
+}
+.prodAction{
+    display: flex;
+    flex-direction: row;
+    gap: 1vmax;
+    padding-top: 3vmax;
+    min-height: 10vmax;
+}
 #prodBGC{
     background-color: #A3A1A1;
 }
 .imgAdminProd{
-    width: 2vmax;
+    width: 3vmax;
+}
+.updateVolInProd{
+    text-decoration: transparent;
+    color: #0DB295;
 }
 /* VOLUMES */
 #thV1, .adminVN{
     padding: 0.5vmax 1vmax;
-    width: 14vmax;
+    width: 20vmax;
+    font-family: monserratM;
     background-color: white;
 }
 #thV2, .adminVV{
     padding: 0.5vmax 1vmax;
-    width: 10vmax;
+    width: 18vmax;
+    font-family: monserratM;
     background-color: white
 }
 #thV3, .adminVP{
     padding: 0.5vmax 1vmax;
-    width: 10vmax;
+    width: 18vmax;
+    font-family: monserratM;
     background-color: white
 }
 #thV4, .adminVA{
     padding: 0.5vmax 1vmax;
     width: auto;
+    font-family: monserratM;
     background-color: white;
+}
+.adminVA{
+    display: flex;
+    flex-direction: row;
+    gap: 2vmax;
 }
 .emtyRow{
     background-color: white;
     width: 100%;
     height: 2vmax;    
 }
-
-
-
+.createVol{
+    margin: 0.5vmax 0 0.5vmax 0.5vmax;
+    width: 17vmax;
+    height: 3vmax;
+    padding-left: 1vmax;
+    background-color: #0DB295;
+    color: #F8F8F8;
+    font-family: monserratM;
+    font-size: 0.8vmax;
+    border: transparent;
+    border-radius: 3vmax;
+}
+.volOneRow{
+    font-size: 1vmax;
+    font-family: monserratM;
+    width: 10vmax;
+}
+.priceOneVol{
+    font-size: 1vmax;
+    font-family: monserratM;
+    width: 10vmax;
+}
+.hasAlready{
+    font-family: monserratSB;
+    color: #0DB295;
+    font-size: 1.2vmax;
+    line-height: 280%;
+}
+.oneRow{
+    background-color: #BDBDBD;
+}
+/* CREATE VOLUME */
+#imgDescVolCreate{
+    width: 80vmax;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#infoProdForVol{
+    display: flex;
+    flex-direction: column;
+    gap: 3vmax;
+}
+#imgProdForVol{
+    width: 10vmax;
+}
+#forVolumes{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40vmax;
+}
+#forVolumesU{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    width: 40vmax;
+}
+#forHasAlready{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#forFormCreateVol{
+    display: flex;
+    flex-direction: column;
+    gap: 1vmax;
+    width: 31vmax;
+}
+.inputCreateVol{
+    padding-left: 1vmax;
+    width: 30vmax;
+    height: 3vmax;
+    border-radius: 3vmax;
+    border: 0.1vmax solid #0DB295;
+    font-family: monserratM;
+    font-size: 1vmax;
+    color: #0E1514;
+    outline: transparent;
+    background-color: transparent;
+}
+#formCreateVol{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1vmax;
+}
+#submitCreateVol{
+    align-self: flex-end;
+    width: 13vmax;
+    height: 3vmax;
+    font-family: monserratSB;
+    color: #F8F8F8;
+    background-color: #0DB295;
+    font-size: 1.2vmax;
+    border: transparent;
+    border-radius: 3vmax;
+}
+#formUpdateVol{
+    width: 31vmax;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1vmax;
+}
 /* ORDERS */
 .ordersAdmin{
     font-family: monserratM;
@@ -1147,7 +1340,7 @@ nav{
 .createNName{
     display: flex;
     flex-direction: row;
-    width: 60vmax;
+    width: 90vmax;
 }
 .createAdmin{
     display: flex;
@@ -1164,10 +1357,10 @@ nav{
 
 /* CREATE PAGE */
 .titleCreate{
-    width: 80vmax;
+    /* width: 80vmax; */
     font-family: monserratSB;
     font-size: 1.4vmax;
-    line-height: 200%;
+    line-height: 280%;
     color: #0DB295;
 }
 /* CREATE CATEGORY */
@@ -1175,8 +1368,8 @@ nav{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 10vmax;
-    background-color: palegoldenrod;
+    height: 8vmax;
+    width: 80vmax;
 }
 #createCategory{
     font-size: 0.8vmax;
@@ -1199,6 +1392,7 @@ nav{
     color: #F8F8F8;
     border: transparent;
 }
+
 @font-face {
     font-family: 'monserratB';
     src: url(../fonts/Montserrat-Black.ttf);
