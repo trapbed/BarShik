@@ -197,7 +197,7 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
                 $countVP = 1;
                 if($numVP != 0){
                     foreach($volumesProd as $vp){
-                        echo "<span>$vp[2]</span>  /  <span>$vp[3] &#8381;</span> <br>";
+                        echo "<div class='inlineVol'> <span>$vp[2]</span>/<span>$vp[3] &#8381;</span> <a href='preDeleteVolProd-db.php?id=".$vp[0]."'><div class='deleteVolProd'></div></a> </div> <br>";
                         if($countVP == $numVP){
                             echo "<br><br><a class='updateVolInProd' href='index.php?page=products&prods=volumes'>Изменить объем</a>";
                             $countVP = 0;
@@ -237,14 +237,14 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
 
                 echo "<td class='prodAction'>
                 
-                    <form action='updateProd-db.php' method='POST'>
-                        <input type='hidden' name='idCat' value='".$prod[0]."'>
+                    <form action='preUpdateProd-db.php' method='POST'>
+                        <input type='hidden' name='idProd' value='".$prod[0]."'>
                         <input class='updateCatAct' type='submit' value=''>
                     </form>
 
 
-                    <form id='actionCatForm' action='deleteProd-db.php' method='POST'>
-                        <input class='deleteCatAct' type='hidden' name='idCat' value='".$prod[0]."'>
+                    <form id='actionCatForm' action='preDeleteProd-db.php' method='POST'>
+                        <input class='deleteCatAct' type='hidden' name='idProd' value='".$prod[0]."'>
                         <input class='deleteCatAct' type='submit' value=''>
                     </form>
                 

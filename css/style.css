@@ -1363,6 +1363,12 @@ nav{
     line-height: 280%;
     color: #0DB295;
 }
+#titleCreateVol{
+    font-family: monserratSB;
+    font-size: 1.4vmax;
+    line-height: 280%;
+    color: #0DB295;
+}
 /* CREATE CATEGORY */
 #createCatPage{
     display: flex;
@@ -1465,6 +1471,31 @@ nav{
     color: #0DB295;
     font-family: monserratM;
     font-size: 0.8vmax;
+}
+
+
+
+.deleteVolProd{
+    width: 1vmax;
+    height: 1vmax;
+    background-image: url('../images/delete.png');
+    background-size: cover;
+}
+.inlineVol{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 65%;
+}
+.inlineVol>a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1vmax;
+    height: 1vmax;
+}
+.inlineVol>a>div{
+
 }
 @font-face {
     font-family: 'monserratB';

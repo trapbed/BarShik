@@ -7,7 +7,7 @@
     $imgName = mysqli_fetch_array(mysqli_query($con, "SELECT `name_product`,`image_product` FROM `products` WHERE id_product =".$_POST['idProd']));
 
 
-    echo "<div id='infoProdForVol'> <h3 class='titleCreate'>Добавление объема к : '".$imgName[0]."'</h3>
+    echo "<div id='infoProdForVol'> <h3 id='titleCreateVol'>Добавление объема к : '".$imgName[0]."'</h3>
     <img id='imgProdForVol' src='../images/products/".$imgName[1]."' alt='".$imgName[0]."'></div>";
 
     $volQ = mysqli_fetch_all(mysqli_query($con, "SELECT volume_of_prod, price_volume FROM `volumes` JOIN products ON products.id_product=volumes.id_product WHERE volumes.id_product=".$_POST['idProd']));

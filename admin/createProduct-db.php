@@ -28,7 +28,6 @@
         // move_uploaded_file($img['name'], "../images/products/".$img['name'].")");
         move_uploaded_file($img, "../images/products/".$img."");
 
-        // echo $id;
         echo "
         <script>
             location.href = 'createProdCV-db.php?cat=".$cat."&vol=".$vol."&price=".$price."&id=".$id."';
