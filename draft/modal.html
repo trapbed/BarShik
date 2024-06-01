@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin :0;
+        }
+        #backModal{
+            position: relative;
+            width: 100vmax;
+            height: 100vmin;
+            background-color: rgba( 14, 21, 20, 0.5);
+        }
+        #modalReg{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 54vmax;
+            height: 32vmax;
+            background-color: white;
+            border-radius : 3vmax;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: 5vmax solid white;
+        }
+        #imgOneProd{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24vmax;
+            height: 100%;
+            border-right: 0.1vmax solid rgba(0, 0, 0, 0.1);
+        }
+        #infoOneProd{
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between; */
+            overflow-y: hidden;
+            width: 26.2vmax;
+        }
+        #nameProd{
+            font-family: monserratB;
+            line-height: 300%;
+            color: #0E1514;
+            /* background-color: wheat; */
+            font-size: 1.8vmax;
+        }
+        #rating{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height: 3vmax;
+            width: 10.5vmax;
+        }
+        #rating>img{
+            width: 1vmax;
+        }
+        #numRat{
+            font-family: monserratSB;
+            font-size: 1vmax;
+            line-height: 1;
+            color: #0E1514;
+
+        }
+        #amountRat{
+            font-family: monserratM;
+            font-size: 1vmax;
+            line-height: 1;
+            color: #BDBDBD;
+        }
+        #emtyOneProd{
+            width: 100%;
+            height: 0.8vmax;
+        }
+        #descProd{
+            position: relative;
+            height: 2vmax;
+        }
+        #descProd>#desc{
+            position: absolute;
+            z-index: 1;
+            font-family: monserratM;
+            font-size: 1vmax;
+            line-height: 1;
+            color: #AAAAAA;
+        }
+        #descProd>div{
+            position: absolute;
+            top: 2vmax;
+            z-index: 2;
+            width: 100%;
+            height: 4vmax;
+            background-color: white;
+        }
+        #descProd>#more{
+            position: absolute;
+            z-index: 2;
+            top: 2vmax;
+            right: 0;
+            font-family: monserratSB;
+            font-size: 1vmax;
+            color: #0DB295;
+        }
+        #allBeforePos{
+            position: absolute;
+            z-index: 3;
+            top: 14vmax;
+        }
+        #offersOneProd{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: rgba(13, 178, 149, 0.05);
+            border: 1.5vmax solid transparent;
+            width: 25.2vmax;
+            height: 3.8vmax;
+        }
+        #offersOneProd>span{
+            font-family: monserratB;
+            font-size: 1vmax;
+            line-height: 1;
+            height: 2vmax;
+            color: #0E1514;
+        }
+        #offerBtm{
+            display: flex;
+            height: 2vmax;
+            flex-direction: row;
+            justify-content: space-between;
+            line-height: 1;
+        }
+        #offerBtmLeft{
+            display: flex;
+            flex-direction: row;
+            font-size: 0.8vmax;
+            font-family: monserratM;
+        }
+        #offerBtmLeft>img{
+            width: 1vmax;
+        }
+        #emtyOneProd1{
+            width: 1.3vmax;
+            height: 100%;
+        }
+        #offerLeftBtm{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #offerLeftTop{
+            color: #0E1514;
+        }
+        #offerLeftBtm{
+            color: #A3A1A1;
+        }
+        #offerBtmRight{
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            font-family: monserratSB;
+            justify-content: space-between;
+            line-height: 1;
+        }
+        #offerRightTop{
+            font-size: 0.9vmax;
+            color: #0E1514;
+        }
+        #offerRightBtm{
+            font-size: 0.8vmax;
+            color: #0DB295;
+        }
+        #emtyOneProd2{
+            width: 100%;
+            height: 1.8vmax;
+        }
+        #volumeOneProd{
+            height: 4.2vmax;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #volumeOneProd>span{
+            font-family: monserratSB;
+            font-size: 1vmax;
+            line-height: 1;
+            color: #0E1514;
+        }
+        #volumesProd{
+            display: flex;
+            flex-direction: row;
+            gap: 1vmax;
+        }
+        .oneV{
+            width: 4.5vmax;
+            height: 2vmax;
+            border-radius: 1vmax;
+            border: 0.1vmax solid #AAAAAA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #AAAAAA;
+            font-family: monserratM;
+            font-size: 0.8vmax;
+        }
+        #emtyOneProd3{
+            width: 100%;
+            height: 2.2vmax;
+        }
+        #priceNBtn{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: 4.2vmax;
+            width: 26.2vmax;
+        }
+        #PriceProd{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #namePrice{
+            font-family: monserratM;
+            font-size: 1vmax;
+            line-height: 1;
+            color: #BDBDBD;
+        }
+        #justPrice{
+            font-family: monserratB;
+            font-size: 1.3vmax;
+            line-height: 190%;
+            color: #0E1514;
+        }
+        #toCart{
+            width: 13vmax;
+            height: 100%;
+            border-radius: 3vmax;
+            border: transparent;
+            background-color: #0DB295;
+            color: white;
+            font-family: monserratSB;
+            font-size: 1.2vmax;
+        }
+        #closeOneProd{
+            position: absolute;
+            width: 2vmax;
+            top: -2.5vmax;
+            right: -2.5vmax;
+        }
+        @font-face {
+            font-family: 'monserratB';
+            src: url(../fonts/Montserrat-Bold.ttf);
+        }
+        @font-face {
+            font-family: 'monserratSB';
+            src: url(../fonts/Montserrat-SemiBold.ttf);
+        }
+        @font-face {
+            font-family: 'monserratM';
+            src: url(../fonts/Montserrat-Medium.ttf);
+        }
+    </style>
+</head>
+<body>
+    <div id="backModal"></div>
+    <div id="modalReg">
+        <img src="../images/close.png" alt="close" id="closeOneProd">
+        <div id="imgOneProd"><img src="../images/products/boba.png" alt=""></div>
+        <div id="infoOneProd">
+            <h3 id="nameProd">Добрый Кола</h3>
+            <div id="rating">
+                <img src="../images/star.svg" alt="">
+                <span id="numRat">5.0</span>
+                <span id="amountRat">(2343 оценок)</span>
+            </div>
+            <div id="emtyOneProd"></div>
+            <div id="descProd">
+                <span id="desc">Оригинальный вкус в новой упаковке. Газированный безалкогольный напиток Cola – напиток в металлической банке, освежает и тонизирует с первого глотка. Удивительный чайно-карамельный цвет, приятные пузырьки газа и ни с чем не сравнимый вкус.</span>
+                <div></div>
+                <span id="more">Читать полностью</span>
+            </div>
+            <div id="allBeforePos">
+                <div id="offersOneProd">
+                    <span>Специальное предложение</span>
+                    <div id="offerBtm">
+                        <div id="offerBtmLeft">
+                            <img src="../images/checkMark.svg" alt="check mark">
+                            <div id="emtyOneProd1"></div>
+                            <div id="offerLeftBtm">
+                                <span id="offerLeftTop">Оплатите заказ баллами до 30%</span>
+                                <span id="offerLeftBtm">Вернем 5% бонусами</span>
+                            </div>
+                        </div>
+                        <div id="offerBtmRight">
+                            <span id="offerRightTop">- 40 бонусов</span>
+                            <span id="offerRightBtm">Отменить</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="emtyOneProd2"></div>
+                <div id="volumeOneProd">
+                    <span>Объем</span>
+                    <div id="volumesProd">
+                        <div class="oneV">0.33</div>
+                        <div class="oneV">0.45</div>
+                        <div class="oneV">0.8</div>
+                    </div>
+                </div>
+                <div id="emtyOneProd3"></div>
+                <div id="priceNBtn">
+                    <div id="PriceProd">
+                        <span id="namePrice">Цена</span>
+                        <span id="justPrice">100 &#8381;</span>
+                    </div>
+                    <form action="" method="GET">
+                        <input type="hidden" name="">
+                        <input type="submit" value="В корзину" id="toCart">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- location.href = '<?=$_SESSION['http']?>'; -->
+<img src="../images/" alt="">
+</body>
+</html>
+
+
+
+
+<span id='desc'>Оригинальный вкус в новой упаковке. Газированный безалкогольный напиток Cola – напиток в металлической банке, освежает и тонизирует с первого глотка. Удивительный чайно-карамельный цвет, приятные пузырьки газа и ни с чем не сравнимый вкус.</span>

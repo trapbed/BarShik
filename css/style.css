@@ -422,6 +422,9 @@ nav{
     height: 100%;
     border-right: 0.1vmax solid rgba(0, 0, 0, 0.1);
 }
+#imgOneProd>img{
+    width: 70%;
+}
 #infoOneProd{
     display: flex;
     flex-direction: column;
@@ -1423,6 +1426,19 @@ nav{
     height: 1vmax;
     outline: none;
 }
+.inputCPU{
+    display: flex;
+    border-radius: 3vmax;
+    border: 0.1vmax solid #AAAAAA;
+    background-color: transparent;
+    font-family: monserratL;
+    font-size: 1.1vmax;
+    align-items: center;
+    width: 34vmax;
+    padding: 1vmax;
+    outline: none;
+    height: 7vmax;
+}
 #selectCatProd{
     height: 4vmax;
 }
@@ -1494,8 +1510,22 @@ nav{
     width: 1vmax;
     height: 1vmax;
 }
-.inlineVol>a>div{
 
+
+
+/* UPDATE PROD */
+#updateProd{
+    display: flex;
+    flex-direction: row;
+    width: 90vmax;
+    gap: 3vmax;
+}
+#updateProdFI{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 100%;
+    width: 60vmax;
 }
 @font-face {
     font-family: 'monserratB';

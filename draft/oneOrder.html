@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #orders{
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            gap: 3vmax;
+            width: 50vmax;
+            background-color: #F8F8F8;
+        }
+        #oneOrder{
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 3vmax;
+            width: 43vmax;
+            padding: 1vmax ;
+            gap: 1.5vmax;
+            /* height: 20vmax; */
+        }
+        #oneOrder>h5{
+            font-family: monserratSB;
+            font-size: 1.2vmax;
+            line-height: 1;
+        }
+        #oneOrder>span{
+            font-family: monserratM;
+            font-size: 1vmax;
+            line-height: 1;
+        }
+        #oneProd{
+            /* background-color: pink; */
+            box-shadow: 0vmax 0vmax 0.3vmax rgba(170, 170, 170, 0.3);
+            /* border: 0.1vmax solid rgba(170, 170, 170, 0.3); */
+            border-radius: 3vmax;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 41vmax;
+            height: 6vmax;
+            padding: 2vmax 1vmax;
+        }
+        #infoOneProd{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 38vmax;
+        }
+        #infoOneProd>span{
+            font-family: monserratM;
+            font-size: 1.1vmax;
+        }
+        #mathSum{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 25vmax;
+            font-family: monserratL;
+            font-size: 1vmax;
+        }
+        #sumOneProd{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-family: monserratSB;
+            font-size: 1.2vmax;
+        }
+@font-face {
+    font-family: 'monserratB';
+    src: url(../fonts/Montserrat-Black.ttf);
+}
+@font-face {
+    font-family: 'monserratSB';
+    src: url(../fonts/Montserrat-SemiBold.ttf);
+}
+@font-face {
+    font-family: 'monserratM';
+    src: url(../fonts/Montserrat-Medium.ttf);
+}
+@font-face {
+    font-family: 'monserratL';
+    src: url(../fonts/Montserrat-Light.ttf);
+}
+    </style>
+</head>
+<body>
+    <div id="orders">
+        <div id="oneOrder">
+            <h5>№1</h5>
+            <span>12 апреля 23:10</span>
+            <div id="oneProd">
+                <div id="infoOneProd">
+                    <span>Название продукта</span>
+                    <div id="sumOneProd"><div id="mathSum"><span>Количество: 2</span>X<span>Один напиток: 250</span></div><span>Сумма: 500</span></div>
+                </div>
+                <img width="50" height="100" src="../images/products/kiwi.png" alt="kiwi">
+            </div>
+            
+            <div id="oneProd">
+                <div id="infoOneProd">
+                    <span>Название продукта</span>
+                    <div id="sumOneProd"><div id="mathSum"><span>Количество: 2</span>X<span>Один напиток: 250</span></div><span>Сумма: 500</span></div>
+                </div>
+                <img width="50" height="100" src="../images/products/kiwi.png" alt="kiwi">
+            </div>
+        </div>
+    </div>
+
+    <form action="">
+        <input type="text" name="" id="" required>
+    </form>
+
+
+
+    <table>
+        <th>
+            <td>Логин</td>
+            <td>Количество бонусов</td>
+            <td>Статус(админ)</td>
+            <td>Блокировка</td>
+            <!-- <td>Количество заказов</td> -->
+        </th>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+
+
+</body>
+</html>

@@ -237,7 +237,7 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
 
                 echo "<td class='prodAction'>
                 
-                    <form action='preUpdateProd-db.php' method='POST'>
+                    <form action='updateProd.php' method='POST'>
                         <input type='hidden' name='idProd' value='".$prod[0]."'>
                         <input class='updateCatAct' type='submit' value=''>
                     </form>

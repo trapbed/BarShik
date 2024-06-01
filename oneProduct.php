@@ -73,26 +73,30 @@ if(isset($_GET['id']) && $_GET['id'] != ' '){
                             <div id='PriceProd'>
                                 <span id='namePrice'>Цена</span>";
 
-                            $check_price = false;
-                            $price_vol = "SELECT price_volume FROM volumes WHERE id_product=".$_GET['id'];
+                                $check_price = false;
+                                $price_vol = "SELECT price_volume FROM volumes WHERE id_product=".$_GET['id'];
 
-                            if($id_volume && $id_volume != false){
                                 if($id_volume && $id_volume != false){
-                                    $price_vol .= " AND id_volume_prod = ".$id_volume;
-                                    $check_price = true;
+                                    if($id_volume && $id_volume != false){
+                                        $price_vol .= " AND id_volume_prod = ".$id_volume;
+                                        $check_price = true;
+                                    }
                                 }
-                            }
-                            $price_vol =  mysqli_fetch_all(mysqli_query($con, $price_vol));
+                                $price_vol =  mysqli_fetch_all(mysqli_query($con, $price_vol));
 
-                            if(isset($_GET['volume'])){
-                                echo "<span id='justPrice'>".$price_vol[0][0]." &#8381;</span>";
-                            }
-                            else{
-                                echo "<span id='justPrice'> от ".$price_vol[0][0]." &#8381;</span>";
-                            }
+                                if(isset($_GET['volume'])){
+                                    echo "<span id='justPrice'>".$price_vol[0][0]." &#8381;</span>";
+                                }
+                                else{
+                                    echo "<span id='justPrice'> от ".$price_vol[0][0]." &#8381;</span>";
+                                }
+                            
+                                $vol_row = isset($_GET['volume_row']) ? $_GET['volume_row'] : false;
+
                             echo "</div>
-                            <form action='' method='GET'>
-                                <input type='hidden' name=''>
+                            <form action='toCart.php' method='GET'>
+                                <input type='hidden' name='vol_row' value = '".$vol_row."'>
+                                
                                 <input type='submit' value='В корзину' id='toCart'>
                             </form>
                         </div>
