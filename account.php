@@ -26,16 +26,61 @@
                         foreach($orders as $item){
                             echo "
                             <div class= 'oneOrder'>";
-                            print_r($item);
+                            // print_r($item);
+                            $status = mysqli_fetch_array(mysqli_query($con, "SELECT name_status FROM status_orders WHERE id_status =".$item[3]));
                             echo "<span class='titleOrder'>Заказ №".$item[0]."</span>";
+                            echo "<div class='textOneOrder'>";
+                                $date = substr($item[2], 0, 10);
+                                $date = date("d.m.Y", strtotime($date));
+                                // echo $date;
+                                $time = substr($item[2], 11, 10);
+                                // echo $time;
+                                echo "<span class='dateOrder'>Дата и время заказа</span>";
+                                echo "<div class='dateTimeOrder'>
+                                    <div class='onlyDateOrder'>
+                                        <span class='titleOnly'>Дата</span>
+                                        <span>".$date."</span>
+                                    </div>
+                                    <div class='onlyTimeOrder'>
+                                        <span class='titleOnly'>Время</span>
+                                        <span>".$time."</span>
+                                    </div>
+                                </div>";
+
+                                echo "<span class='dateOrder'>Итог</span>";
+                                echo "<div class='dateTimeOrder'>
+                                    <div class='onlyDateOrder'>
+                                        <span class='titleOnly'>Сумма</span>
+                                        <span>".$item[4]."</span>
+                                    </div>
+                                    <div class='onlyTimeOrder'>
+                                        <span class='titleOnly'>Списано бонусов</span>
+                                        <span>".$item[5]."</span>
+                                    </div>
+                                    <div class='onlyTimeOrder'>
+                                        <span class='titleOnly'>Начисленно бонусов</span>
+                                        <span>".$item[6]."</span>
+                                    </div>
+                                </div>";
+
+
+                                echo "<span class='dateOrder'>Статус</span>";
+                                $status = mysqli_fetch_array(mysqli_query($con,"SELECT name_status FROM status_orders WHERE id_status =".$item[3]))[0];
+                                echo "<div class='dateTimeOrder'>
+                                    <div class='onlyDateOrder'>
+                                        <span class='statusOrder'>".$status."</span>
+                                    </div>
+                                </div>";
+
                             echo "</div>
+                            </div>
                             ";
 
                         }
                     }else{
-                        echo 23;
+                        echo "У вас еще нет заказов";
                     }
-                echo "</div>
+                echo "
             </main>";
         }
         else if($page == 'cart'){
@@ -74,7 +119,12 @@
             echo "</main>
             <div id='btnNSumCart'>
                 <span>Сумма: <font color='#0DB295'>".$sumCart." &#8381;</font></span>
-                <a href='buy.php'>Заказать</a>
+                <form action='buy.php' method='GET'>
+                    <label for='use_bonus' > Использовать бонусы
+                        <input type='checkbox' name='use_bonus'>
+                    </label>
+                    <input type='submit' value='Заказать'>
+                </form>
             </div>";
         }
         else{

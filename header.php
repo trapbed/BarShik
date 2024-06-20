@@ -1,9 +1,34 @@
 <?php
+session_start();
+include "connect-db.php"; 
 
+    $bonuses_active = 0;
+    $count_cart = 0;
 
-    include "connect-db.php"; 
+    if(isset($_SESSION["id_user"])){
+        $minus_bonus = mysqli_fetch_all(mysqli_query($con,"SELECT bonus_minus FROM orders WHERE id_user =".$_SESSION['id_user']));
+        $plus_bonus = mysqli_fetch_all(mysqli_query($con, 'SELECT bonus_plus FROM orders WHERE id_user ='.$_SESSION['id_user']));
+        foreach($plus_bonus as $plus){
+            $bonuses_active += $plus[0];
+        }
+        foreach($minus_bonus as $minus){
+            $bonuses_active -= $minus[0];
+        }
 
-    session_start();
+        $query_cart = mysqli_query($con, "SELECT into_cart FROM cart WHERE id_user =".$_SESSION['id_user']);
+        $count_row_cart = mysqli_num_rows($query_cart);
+        if($count_row_cart > 0){
+            $into_cart = mysqli_fetch_array($query_cart)[0];
+            $into_cart = (array) json_decode($into_cart);
+            foreach($into_cart as $prod=>$amount){
+                $count_cart += $amount;
+            }
+        }
+    }
+
+    
+// echo $count_cart;
+    
     $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : false; 
     if(isset($_SESSION['mess'])){
         echo "<script>
@@ -12,7 +37,7 @@
         unset($_SESSION['mess']);
     }
     if($id_user != false){
-        $userInfo = mysqli_fetch_array(mysqli_query($con, "SELECT id_user, email_user, password_user, bonuses_active, admin_status FROM users WHERE id_user=".$id_user));
+        $userInfo = mysqli_fetch_array(mysqli_query($con, "SELECT id_user, email_user, password_user, id_user, admin_status FROM users WHERE id_user=".$id_user));
     }
 ?>
 
@@ -42,8 +67,8 @@
                 <?php
                     if($id_user != false){
                         echo "
-                        <div class='infoAccNav'><img src='../images/ruble.png' alt='ruble' id='ruble'> <span>".$userInfo['bonuses_active']."</span></div>
-                        <div class='infoAccNav'><img src='../images/shopBasket.png' alt='basket' id='basket'> <span>0</span></div>
+                        <a href='../account.php?page=cart' class='infoAccNav'><img src='../images/ruble.png' alt='ruble' id='ruble'> <span>".$bonuses_active."</span></a>
+                        <a href='../account.php?page=cart' class='infoAccNav'><img src='../images/shopBasket.png' alt='basket' id='basket'> <span>".$count_cart."</span></a>
                         <a href='/account.php' id='userEmailNav'>".$userInfo['email_user']."</a>
                         <a href='../exitFromAcc.php' id='logOut' >Выйти</a>";
                     }

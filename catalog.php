@@ -39,7 +39,12 @@
             <?php
 
                 $category = isset($_GET['category']) ? $_GET['category'] : false;
-                $products = "SELECT DISTINCT name_product, desc_product, products.id_product, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=categories_of_products.id_category ";
+                if(isset($_GET['search'])){
+                    $products = "SELECT DISTINCT name_product, desc_product, products.id_product, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=categories_of_products.id_category WHERE name_product LIKE '%".$_GET['search']."%'";
+                }
+                else{
+                    $products = "SELECT DISTINCT name_product, desc_product, products.id_product, image_product, products.id_product FROM `products` JOIN categories_of_products ON categories_of_products.id_product=products.id_product JOIN categories ON categories.id_category=categories_of_products.id_category ";
+                }
                 // $products = "SELECT name_product, desc_product, name_category, price_product, image_product, id_product FROM products JOIN categories ON categories.id_category=products.id_category_prod";
                 if($category != false && $category){
                     $products.= " WHERE categories_of_products.id_category = ".$_GET['category'];
@@ -120,6 +125,5 @@
         })
     </script>
     <script src='../js/modalReg.js'></script>
-
 </body>
 </html>
