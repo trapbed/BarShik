@@ -29,9 +29,9 @@
     <br>
     <br>
     <label class='labelCP' for='vol'>Один объем (хотя-бы)</label>
-        <input class='inputCP' type='text' name='vol'  required pattern='[0-9]{1,3}.[0-9]{}'>
-    <label class='labelCP' for='price'>Одна цена (хотя-бы)</label>
-        <input class='inputCP' type='text' name='price'  required>
+        <input class='inputCP' type='text' name='vol'  required pattern='[0-9]{1,3}.[0-9]{2}'>
+    <label class='labelCP' for='price'>Одна цена (для создаваемого объема)</label>
+        <input class='inputCP' type='text' name='price' pattern='[,5]{0-9}' required>
     <br>
     <br>
     <br>

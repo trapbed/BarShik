@@ -423,7 +423,7 @@ nav{
     border-right: 0.1vmax solid rgba(0, 0, 0, 0.1);
 }
 #imgOneProd>img{
-    width: 70%;
+    height: 100%;
 }
 #infoOneProd{
     display: flex;
@@ -799,9 +799,121 @@ nav{
     font-size: 1.4vmax;
     width: 35vmax;
 }
-
-
-
+#accountMain{
+    width: 60vmax;
+    /* background-color: ; */
+    overflow-y: scroll;
+    height: 25vmax;
+    max-height: 25vmax;
+}
+#accountMainInfo{
+    /* background-color: ; */
+    height: 25vmax;
+    max-height: 25vmax;
+}
+#accountMainOrder{
+    width: 60vmax;
+    /* background-color: ; */
+    /* overflow-y: scroll; */
+    height: 25vmax;
+    max-height: 25vmax;
+}
+#btnNSumCart{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 60vmax;
+    background-color: antiquewhite;
+    height: 5vmax;
+}
+#btnNSumCart>span{
+    color: #0E1514;
+    font-family: monserratSB;
+    font-size: 1.4vmax;
+}
+#btnNSumCart>a{
+    text-decoration: transparent;
+    background-color: #0DB295;
+    width: 13vmax;
+    height: 4vmax;
+    color: #F8F8F8;
+    font-size: 1.4vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3vmax;
+    font-family: monserratM;
+}
+.cartOneProd{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    gap: 5vmax;
+    align-items: center;
+    width: 56vmax;
+    /* height: 3vmax; */
+    padding: 1vmax;
+    background-color: #F8F8F8;
+    border-radius: 1vmax;
+    border: 0.1vmax solid #A3A1A1;
+}
+.cartOneProd>img{
+    width: 2vmax;
+}
+.cartOneProdName{
+    display: flex;
+    flex-direction: column;
+    font-family: monserratM;
+    height: 4vmax;
+    gap: 0.4vmax;
+    width: 19vmax;
+    font-size: 1.2vmax;
+}
+.cartOneProdName>span, .cartOneProdVol>span{
+    font-family: monserratM;
+    font-size: 0.8vmax;
+}
+.cartOneProdVol{
+    display: flex;
+    height: 4vmax;
+    width: 6vmax;
+    gap: 0.4vmax;
+    flex-direction: column;
+    font-family: monserratM;
+    font-size: 1.2vmax;
+}
+.cartOneProdAmount{
+    font-family: monserratSB;
+    height: 4vmax;
+    width: 7vmax;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.cartOneProdAmount>a{
+    text-decoration: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2vmax;
+    height: 2vmax;
+    background-color: #0DB295;
+    color: #F8F8F8;
+}
+.cartOneProdAmount>span{
+    height: 100%;
+    width: 2vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#emptyCart{
+    font-family: monserratM;
+    font-size: 1.2vmax;
+    color: black;
+}
 /* ORDERS */
 #orders{
     align-self: center;
@@ -870,7 +982,12 @@ nav{
     font-family: monserratSB;
     font-size: 1.2vmax;
 }
-
+.oneOrder{
+    width: 54vmax;
+    padding: 1vmax;
+    background-color: ;
+    border: 0.1vmax solid #AAAAAA;
+}
 /* ADMIN */
 .adminNav{
     text-decoration: transparent;
@@ -1027,6 +1144,14 @@ nav{
     border: transparent;
     background-color: transparent;
     background-image: url(../images/delete.png);
+}
+.recoverCatAct{
+    width: 2.5vmax;
+    height: 2.5vmax;
+    background-size: cover;
+    border: transparent;
+    background-color: transparent;
+    background-image: url(../images/arrows.png);
 }
 /* CHECK CAT */
 #headerCheckCat{
@@ -1299,8 +1424,12 @@ nav{
 .ordersAdmin{
     font-family: monserratM;
     font-size: 0.8vmax;
-    width: 60vmax;
+    width: 90vmax;
     background-color: #BDBDBD;
+}
+#ordersAdmin{
+    width: 89vmax !important;
+    margin-right: 1vmax;
 }
 .titleOAN{
     padding: 0.5vmax;
@@ -1328,7 +1457,7 @@ nav{
 }
 .titleOASt{
     padding: 0.5vmax;
-    width: 6vmax;
+    width: 10vmax;
     height: 1vmax;
     background-color: oldlace;
 }

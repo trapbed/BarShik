@@ -10,10 +10,10 @@
     $products = '' ;
     $setCat = isset($_GET['category']) ? $_GET['category'] : false;  
     
-
+    // print_r($_SESSION['cart']);
 
     include "oneProduct.php";
-    echo mysqli_insert_id($con);
+    // echo mysqli_insert_id($con);
 ?>
 
 

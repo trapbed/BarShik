@@ -6,7 +6,7 @@ if(isset($_GET['id']) && $_GET['id'] != ' '){
     echo "<div id='backModal'></div>
             <div id='modalReg'>
                 <img src='../images/close.png' alt='close' id='closeOneProd'>
-                <div id='imgOneProd'><img src='../images/products/".$queryProd[3]."' alt=''></div>
+                <div id='imgOneProd'><img src='../images/products/".$queryProd[3]."' alt='продукт'></div>
                 <div id='infoOneProd'>
                     <h3 id='nameProd'>$queryProd[0]</h3>
                     <div id='rating'>
@@ -94,8 +94,11 @@ if(isset($_GET['id']) && $_GET['id'] != ' '){
                                 $vol_row = isset($_GET['volume_row']) ? $_GET['volume_row'] : false;
 
                             echo "</div>
-                            <form action='toCart.php' method='GET'>
+                            <form action='toCart.php' method='POST'>
                                 <input type='hidden' name='vol_row' value = '".$vol_row."'>
+                                <input type='hidden' name='prod' value = '".$_GET['id']."'>
+                                <input type='hidden' name='category' value = '".$_GET['category']."'>
+                                <input type='hidden' name='numProd' value = '".$_GET['numProd']."'>
                                 
                                 <input type='submit' value='В корзину' id='toCart'>
                             </form>

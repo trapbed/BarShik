@@ -5,6 +5,12 @@
 
     session_start();
     $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : false; 
+    if(isset($_SESSION['mess'])){
+        echo "<script>
+            alert('".$_SESSION['mess']."');
+        </script>";
+        unset($_SESSION['mess']);
+    }
     if($id_user != false){
         $userInfo = mysqli_fetch_array(mysqli_query($con, "SELECT id_user, email_user, password_user, bonuses_active, admin_status FROM users WHERE id_user=".$id_user));
     }

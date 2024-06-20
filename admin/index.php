@@ -63,7 +63,7 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
                     <h3 id='namePageAdmin'> Заказы </h3>
               </div>";
         echo "<div id='emtyOneProd2'></div>
-            <table class='ordersAdmin'>
+            <table class='ordersAdmin' id='ordersAdmin'>
                 <tr> 
                     <td class='titleOAN' id='thO1'>Номер</td>
                     <td class='titleOAU' id='thO2'>Пользователь</td>
@@ -93,6 +93,7 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
                     echo "<tr>";
                     $checkCat = 1;
                 }
+                $check_exist = mysqli_fetch_array(mysqli_query($con, "SELECT exist FROM categories WHERE id_category=$cat[0]"));
                     echo "<td class='idCategory'>".$cat[0]."</td>
                           <td class='nameCategory'>".$cat[1]."</td>
                           <td class='actionCategory'>
@@ -101,11 +102,29 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
                                 <input class='updateCatAct' type='submit' value=''>
                             </form>
 
-                            <form id='actionCatForm' action='deleteCat-db.php' method='POST'>
+                            <form id='actionCatForm' action='";
+                            if($check_exist[0] == 1) {
+                                echo "deleteCat-db.php";
+                            }else{
+                                echo "recoverCat-db.php";
+                            } 
+                            echo "' method='POST'>
                                 <input class='deleteCatAct' type='hidden' name='idCat' value='".$cat[0]."'>
-                                <input class='deleteCatAct' type='submit' value=''>
+                                <input class='";
+                                if($check_exist[0] == '1') {
+                                    echo 'deleteCatAct';
+                                }else{
+                                    echo 'recoverCatAct';
+                                }
+                                echo "' type='submit' value=''>
                             </form>
                           </td>";
+                        //   echo "<input class='";
+                        // if($check_exist[0] == 1) {
+                        //     echo "deleteCatAct";
+                        // }else{
+                        //     echo "recoverCatAct";
+                        // } 
                 if($checkCat == 1){
                     echo "</tr>";
                     $checkCat = 0;
@@ -233,7 +252,7 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
                 echo "</td>";
 
 
-
+                $check_exist = mysqli_fetch_array(mysqli_query($con, "SELECT exist FROM `products` WHERE id_product=$cat_pro[2]"));
 
                 echo "<td class='prodAction'>
                 
@@ -243,10 +262,22 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
                     </form>
 
 
-                    <form id='actionCatForm' action='preDeleteProd-db.php' method='POST'>
-                        <input class='deleteCatAct' type='hidden' name='idProd' value='".$prod[0]."'>
-                        <input class='deleteCatAct' type='submit' value=''>
-                    </form>
+                    <form id='actionCatForm' action='";
+                    if($check_exist[0] == 1) {
+                        echo "preDeleteProd-db.php";
+                    }else{
+                        echo "preRecoverProd-db.php";
+                    } 
+                    echo "' method='POST'>
+                        <input class='deleteCatAct' type='hidden' name='idProd' value='".$prod[0]."'>";
+                        echo "<input class='";
+                        if($check_exist[0] == 1) {
+                            echo "deleteCatAct";
+                        }else{
+                            echo "recoverCatAct";
+                        } 
+                        echo "' type='submit' value=''>";
+                    echo "</form>
                 
                 </td>
                 </tr>";
