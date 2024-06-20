@@ -1,6 +1,5 @@
 <?php
 session_start();
-echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
     include "header.php";
     echo "<div id='emtyAboveAcc'> </div>";
     $page = isset($_GET['page']) ? $_GET['page']  : false ;
@@ -57,6 +56,31 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
         }
         
     }
+    else if($page && $page == "stat"){
+        $from_stat = isset($_GET["from"]) ? $_GET["from"] : false;
+        $to_stat = isset($_GET["to"]) ? $_GET["to"] : false;
+        $today = date("Y-m-d");
+        echo "<h5 id='admin_page_stat'>Статистика</h5>";
+        echo "<br>";
+        echo "<form method='GET' action='../admin/index.php?page=stat' id='stat_admin'>
+            <input type='hidden' name='page' value='stat'>
+            <label for='from' >с
+                <input type='date' name='from' id='from_stat' max='$today' value='".$from_stat."'>
+            </label>
+            <label for='to' >по
+                <input type='date' name='to' id='to_stat' min='' max='$today' value='".$to_stat."'>
+            </label>
+        </form>";
+        echo "<br>";
+        echo "<div class='title_stat_admin'>
+            <span class='date_stat_order'>Дата</span>
+            <span class='amount_stat_order'>Количество заказов</span>
+            <span class='sum_stat_order'>Сумма заказов</span>
+        </div>";
+        echo "<br>";
+
+        // $all_orders = mysqli_fetch_all(mysqli_query($con,"SELECT * FROM"));
+    }
     // ЗАГОЛОВКИ ЗАКАЗОВ
     else{
         echo "<div class='createNName' >
@@ -69,8 +93,9 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
                     <td class='titleOAU' id='thO2'>Пользователь</td>
                     <td class='titleOAD' id='thO3'>Дата</td>
                     <td class='titleOASu' id='thO4'>Сумма</td>
+                    <td class='titleOAM' id='thO6'>Списано бонусов </td>
+                    <td class='titleOAM' id='thO6'>Начислено бонусов</td>
                     <td class='titleOASt' id='thO5'>Статус</td>
-                    <td class='titleOAM' id='thO6'>Подробнее</td>
                 </tr>
             </table>";
     }
@@ -254,11 +279,12 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
 
                 $check_exist = mysqli_fetch_array(mysqli_query($con, "SELECT exist FROM `products` WHERE id_product=$cat_pro[2]"));
 
+                $today = date("Y-m-d");
                 echo "<td class='prodAction'>
                 
                     <form action='updateProd.php' method='POST'>
                         <input type='hidden' name='idProd' value='".$prod[0]."'>
-                        <input class='updateCatAct' type='submit' value=''>
+                        <input class='updateCatAct' type='submit' value='' >
                     </form>
 
 
@@ -288,10 +314,99 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
             }
         }
     }
+    else if($page && $page == "stat"){
+        $date_from = isset($_GET["from"]) ? $_GET["from"] : false;
+        $date_to = isset($_GET["to"]) ? $_GET["to"] : false;
+        
+        if($date_from && $date_to){
+            $arr_between_dates = [];
+            while(date($date_from )<= date($date_to)){
+                array_push($arr_between_dates, $date_from);
+                $date_from = strtotime("$date_from +1day");
+                $date_from = date("Y-m-d", $date_from);
+            }
+            // print_r($arr_between_dates);
+            foreach($arr_between_dates as $date){
+                $query_stat = mysqli_query($con, "SELECT sum_order FROM orders WHERE date_order LIKE '%$date%'");
+                $num_orders = mysqli_num_rows($query_stat);
+                // echo $num_orders;
+                $sum_orders_day = 0;
+                // echo "SELECT sum_order FROM orders WHERE date_order LIKE '%$date%'";
+                if($num_orders > 0){
+                    $sum_orders = mysqli_fetch_all($query_stat);
+                    foreach($sum_orders as $sum){
+                        $sum_orders_day += $sum[0];
+                    }
+                    $num_orders_day = $num_orders;
+                    // $sum_orders_day += $
+                }
+                else{
+                    $num_orders_day = 0;
+                    $sum_orders_day = 0;
+                }
+                // $date = date($date, "d-m-Y");
+                $day = substr($date,8,2 );
+                $month = substr($date,5,2);
+                switch($month){
+                    case "01":
+                        $month = "Января";
+                        break;
+                    case "02":
+                        $month = "Февраля";
+                        break;
+                    case "03":
+                        $month = "Марта";
+                        break;
+                    case "04":
+                        $month = "Апреля";
+                        break;
+                    case "05":
+                        $month = "Мая";
+                        break;
+                    case "06":
+                        $month = "Июня";
+                        break;
+                    case "07":
+                        $month = "Июля";
+                        break;
+                    case "08":
+                        $month = "Августа";
+                        break;
+                    case "09":
+                        $month = "Сентября";
+                        break;
+                    case "10":
+                        $month = "Октября";
+                        break;
+                    case "11":
+                        $month = "Ноября";
+                        break;
+                    case "12":
+                        $month = "Декабря";
+                        break;
+                }
+                $year = substr($date,0,4);
+                $first_sym_day = substr($day,0,1);
+                if($first_sym_day == '0'){
+                    $day = substr($day,1,1);
+                }
+                $date = $day." ".$month." ".$year." года";
+                echo "<div class='title_stat_admin'>
+                    <span class='date_stat_order'>$date</span>
+                    <span class='amount_stat_order'>$num_orders_day</span>
+                    <span class='sum_stat_order'>$sum_orders_day</span>
+                </div>";
+            }
+            
+        }
+        else{
+            echo "<span>Выберите даты</span>";
+        }
+    }
     // ORDERS
     else {
         $statuses = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM status_orders ORDER BY status_orders.id_status ASC"));
-        $orderRow = "SELECT id_order, users.email_user, date_order, status_order, sum_order FROM `orders` JOIN users ON users.id_user=orders.id_user";
+        $orderRow = "SELECT id_order, users.email_user, date_order, status_order, sum_order, bonus_minus, bonus_plus FROM `orders` JOIN users ON users.id_user=orders.id_user";
         
         $countOrder = 1;
         $numOrderRow = mysqli_num_rows(mysqli_query($con, $orderRow));
@@ -300,14 +415,19 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
             if($countOrder == 1){
                 echo"<table class='ordersAdmin'>";
             }
+            // print_r($statuses);
+
             echo "<tr> 
                     <td class='titleOAN' >".$one_order[0]."</td>
                     <td class='titleOAU' >".$one_order[1]."</td>
                     <td class='titleOAD' >".$one_order[2]."</td>
                     <td class='titleOASu' >".$one_order[4]." &#8381; </td>
-                    <td class='titleOASt' ><form method='GET' action=''>
+                    <td class='titleOAM' >$one_order[5]</td>
+                    <td class='titleOAM' >$one_order[6]</td>
+                    <td class='titleOASt' >
+                    <form method='GET' action='status_order_change.php'>
                     <input type='hidden' name='id_order' value='".$one_order[0]."'>
-                    <select name='status' id=''>";
+                    <select name='status' class='statusChange'>";
                         foreach ($statuses as $status){
                             echo "<option value='".$status[0]."'";
                                 if($status[0] == $one_order[3]){
@@ -315,8 +435,9 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
                                 }
                             echo ">".$status[1]."<option>";
                         }
-                    echo "</select></form></td>
-                    <td class='titleOAM' ><form method='GET' action=''></form></td>
+                    echo "</select>
+                    <input type='submit' value='ок'>
+                    </form></td>
                 </tr>";
             if($countOrder == $numOrderRow){
                 echo "</table>";
@@ -331,3 +452,24 @@ echo isset($_SESSION['check']) ? $_SESSION['check'] : false;
 
     echo "</div>";
 ?>
+
+<script>
+    $('#from_stat').change(function(){
+        let date = new Date($('#from_stat').val());
+        min2 = new Date(date.setDate(date.getDate() + 1));
+        let day = min2.getDate();
+        if(day.toString().length < 1){
+            day = "0"+day;
+        }
+        let month = min2.getMonth()+1;
+        if(month.toString().length!=2){
+            month = "0"+month;
+        }
+        min2 = min2.getFullYear() + '-' + month + '-' + day;
+        $('#to_stat').attr("min", min2);
+    })
+    $("#to_stat").change(function(){
+        $("#stat_admin").submit();
+        $('#to_stat').attr("min", "");
+    })
+</script>

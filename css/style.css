@@ -166,7 +166,7 @@ body{
 nav{
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: center;
     width: 100%;
     height: 6vmax;
     background-color: #0E1514;
@@ -224,7 +224,7 @@ nav{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 40vmax;
+    width: 45vmax;
     margin-right: 2vmax;
 }
 #userEmailNav{
@@ -260,11 +260,13 @@ nav{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    text-decoration: transparent;
     width: 4.6vmax;
 }
 .infoAccNav>span{
     font-family: 'monserratSB';
     color: aliceblue;
+    text-decoration: transparent;
 }
 
 #catalogNav{
@@ -832,9 +834,17 @@ nav{
     font-family: monserratSB;
     font-size: 1.4vmax;
 }
-#btnNSumCart>a{
+#btnNSumCart>form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3vmax;
+    font-family: monserratM;
+}
+#btnNSumCart>form>input[type=submit]{
     text-decoration: transparent;
     background-color: #0DB295;
+    border: transparent;
     width: 13vmax;
     height: 4vmax;
     color: #F8F8F8;
@@ -983,10 +993,57 @@ nav{
     font-size: 1.2vmax;
 }
 .oneOrder{
+    display: flex;
+    flex-direction: column;
+    gap : 0.8vmax;
     width: 54vmax;
     padding: 1vmax;
     background-color: ;
     border: 0.1vmax solid #AAAAAA;
+    border-radius: 1vmax;
+}
+.titleOrder{
+    font-family: monserratM;
+    font-size: 1.4vmax;
+    color: #0DB295;
+}
+.dateOrder{
+    font-family: monserratM;
+    font-size: 1.2vmax;
+    color: #0E1514;
+}
+.onlyDateOrder, .onlyTimeOrder{
+    display: flex;
+    flex-direction: column;
+    /* background-color: oldlace; */
+    gap: 0.6vmax;
+    width: 17vmax;
+}
+.onlyDateOrder>.titleOnly, .onlyTimeOrder>.titleOnly{
+    font-family: monserratM;
+    font-size: 1vmax;
+    color: #0E1514;
+}
+.onlyDateOrder>:not(.titleOnly, .statusOrder), .onlyTimeOrder>:not(.titleOnly, .statusOrder){
+    font-family: monserratM;
+    font-size: 0.8vmax;
+    color: #0E1514;
+}
+.onlyDateOrder>.statusOrder{
+    font-family: monserratM;
+    font-size: 1.2vmax;
+    color: #0DB295;
+}
+.dateTimeOrder{
+    display: flex;
+    /* background-color: dodgerblue; */
+    flex-direction: row;
+    gap: 1.6vmax;
+}
+.textOneOrder{
+    display: flex;
+    flex-direction: column;
+    gap: 1vmax;
 }
 /* ADMIN */
 .adminNav{
@@ -1000,11 +1057,14 @@ nav{
 }
 #scrollAdmin{
     display: flex;
+    flex-direction:column;
+    gap: 1vmax;
     align-self: center;
     width: 90vmax;
     height: auto;
     max-height: 20vmax;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 #namePageAdmin{
     width: 90vmax;
@@ -1435,37 +1495,37 @@ nav{
     padding: 0.5vmax;
     width: 4vmax;
     height: 1vmax;
-    background-color: yellow;
+    background-color: white;
 }
 .titleOAU{
     padding: 0.5vmax;
     width: 12vmax;
     height: 1vmax;
-    background-color: sandybrown;
+    background-color: white;
 }
 .titleOAD{
     padding: 0.5vmax;
     width: 12vmax;
     height: 1vmax;
-    background-color: khaki;
+    background-color: white;
 }
 .titleOASu{
     padding: 0.5vmax;
     width: 6vmax;
     height: 1max;
-    background-color: lemonchiffon;
+    background-color: white;
 }
 .titleOASt{
     padding: 0.5vmax;
     width: 10vmax;
     height: 1vmax;
-    background-color: oldlace;
+    background-color: white;
 }
 .titleOAM{
     padding: 0.5vmax;
-    width: auto;
+    width: 5vmax;
     height: 1vmax;
-    background-color: olive;
+    background-color: white;
 }
 
 /* ДЛЯ СОЗДАНИЯ И ЗАГОЛОВКА */
@@ -1655,6 +1715,51 @@ nav{
     justify-content: start;
     height: 100%;
     width: 60vmax;
+}
+
+/* STAT */
+
+#admin_page_stat{
+    width: 90vmax;
+    font-family: monserratM;
+    font-size: 2vmax;
+    color: #0DB295;
+}
+#stat_admin{
+    width: 90vmax;
+}
+#stat_admin>label>input{
+    font-family: monserratM;
+    border: transparent;
+    font-size: 1.2vmax;
+    background-color: transparent;
+    outline: transparent;
+}
+#stat_admin{
+    width: 29vmax;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    justify-content: end;
+    gap: 4vmax;
+    font-family: monserratM;
+}
+.title_stat_admin{
+    width: 90vmax;
+    display: flex;
+    flex-direction: row;
+    gap: 5vmax;
+    font-family: monserratM;
+    font-size: 1.2vmax;
+}
+.title_stat_admin>.date_stat_order{
+    width: 15vmax;
+}
+.title_stat_admin>.amount_stat_order{
+    width: 20vmax;
+}
+.title_stat_admin>.sum_stat_order{
+    width: 20vmax;
 }
 @font-face {
     font-family: 'monserratB';

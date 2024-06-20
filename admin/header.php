@@ -1,12 +1,10 @@
 <?php
-
-
     include "../connect-db.php"; 
 
     session_start();
     $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : false; 
     if($id_user != false){
-        $userInfo = mysqli_fetch_array(mysqli_query($con, "SELECT id_user, email_user, password_user, bonuses_active, admin_status FROM users WHERE id_user=".$id_user));
+        $userInfo = mysqli_fetch_array(mysqli_query($con, "SELECT id_user, email_user, password_user, admin_status FROM users WHERE id_user=".$id_user));
     }
 ?>
 
@@ -17,6 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalog</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
 </head>
 <body id='catalogNav'>
 
@@ -36,6 +36,7 @@
                 <?php
                     if($id_user != false){
                         echo "
+                        <a class='adminNav' href='index.php?page=stat'>Статистика</a>
                         <a class='adminNav' href='index.php?page=orders'>Заказы</a>
                         <a class='adminNav' href='index.php?page=categories'>Категории</a>
                         <a class='adminNav' href='index.php?page=products&prods=products'>Продукты</a>
